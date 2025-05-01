@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
 * {
     margin: 0;
@@ -16,6 +17,18 @@
         transform: translateY(10px);
     }
 }
+@keyframes shake {
+    0% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-5px) rotate(-1deg); }
+    35% { transform: translateX(-3px) rotate(0deg); }
+    50% { transform: translateX(5px) rotate(1deg); }
+    75% { transform: translateX(-5px) rotate(0deg); }
+    100% { transform: translateX(0) rotate(-1deg); }
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     background-color: black;
@@ -24,6 +37,22 @@ body {
 .header {
     background-color:black;
     height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #965F9B;
+}
+
+.header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+.header nav ul li a {
+    display: flex;
+    list-style: none;
+    color: white;
+    text-decoration: none;
 }
 
 .container {
@@ -33,7 +62,7 @@ body {
 
 .hero {
     position: relative;
-    background-image: url(assets/image\ 1.png);
+    background-image: url(assets/image_1.png);
     height: 90vh;
     background-size: cover;
     color: white;
@@ -70,7 +99,7 @@ body {
 .info-section-tq {
     display: flex;
     width: 100%;
-    height: 10rem;
+    height: 11rem;
 }
 
 .info-section-tq-t {
@@ -127,6 +156,7 @@ body {
 
 .div-p-games {
     margin: 5rem 0;
+    text-align: center;
 }
 
 .games-section-1 {
@@ -172,7 +202,7 @@ body {
 
 .games-section-2 {
     display: flex;
-    gap: 30px;
+    gap: 5rem;
     align-items: center;
     justify-content: center;
     width: 80%;
@@ -184,13 +214,205 @@ body {
     background-color: #965F9B;
     border-radius: 40px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-position: center;
     background-size: cover;
+    overflow: hidden;
+    position: relative;
+    box-shadow: -20px -20px 40px #393939, 20px 20px 40px rgba(0, 0, 0, 700);
+}
+.overlay1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+    transition: opacity 0.4s ease;
+    opacity: 0;
+}
+.games-card-2 p{
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    padding: 0 5%;
 }
 
 .games-card-2 img {
     width: 80%;
+    transition: opacity 0.4s ease;
     z-index: 2;
+    opacity: 1;
+}
+
+.games-card-2:hover .overlay1, .games-card-2:hover p {
+    opacity: 1;
+}
+.games-card-2:hover img{
+    opacity: 0;
+}
+
+.recomenda-section {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.recomenda-section .div-p-games {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 40px;
+}
+
+.recomenda-section-main {
+    width: 100%;
+    height: 95vh;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+.recomenda-section-dado-div {
+    width: 150px;
+    height: 150px;
+    background-color: #d9d9d97d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    z-index: 2;
+}
+.recomenda-section-dado-div img {
+    width: 70%;
+}
+.recomenda-section-dado-div img:hover {
+    animation: shake 0.5s infinite ease-in-out;
+    cursor: pointer;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.recomenda-section-texto {
+    z-index: 3;
+    display: flex;
+    gap: 4rem;
+    width: 90%;
+}
+.recomenda-section-texto-texto  {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    text-align: start;
+}
+.recomenda-section-texto-texto p  {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+.recomenda-section-texto-texto h2  {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 35px;
+}
+
+.games-card3 {
+    height: 300px;
+    width: 500px;
+    background-color: #965F9B;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+}
+
+.games-card3 img {
+    width: 80%;
+    z-index: 2;
+}
+
+.games-card3:hover .background-video {
+    opacity: 1;
+}
+
+.games-section-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.games-card-4 {
+    height: 90vh;
+    width: 100%;
+    background-color: #965F9B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    transition: width 0.5s ease, opacity 0.5s ease;
+}
+
+.games-card-4 .texto-card-4{
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.games-card-4 img {
+    width: 80%;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+    opacity: 1;
+}
+
+.games-card-4:hover .overlay1, .games-card-4:hover .texto-card-4 {
+    opacity: 1;
+}
+.games-card-4:hover img{
+    opacity: 0;
+}
+
+.games-section-3.expand-1 .card2, .games-section-3.expand-2 .card1 {
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.footer {
+    background-color: #965F9B;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 175px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
 }

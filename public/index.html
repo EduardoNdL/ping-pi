@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ping</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="header"></div>
+    <div class="header container">
+        <div class="logo">PING</div>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#visual">Visual</a></li>
+                <li><a href="#narrativas">Narrativas</a></li>
+                <li><a href="#recomenda">Recomende</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </div>
     <div class="hero">
         <h1>Bem vindo ao PING</h1>
         <p>Descubra jogos feitos com o coração</p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m6-8l-6-6m-6 6l6-6"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <rect width="24" height="24" fill="none" />
+            <path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 5v14m6-8l-6-6m-6 6l6-6" />
+        </svg>
     </div>
-    <div class="info-section container">
+    <div class="info-section container" id="sobre">
         <h2>Minha história com jogos indies</h2>
         <div class="info-section-tq">
             <div class="info-section-tq-t">
                 <p>
                     Sempre fui apaixonado por videogames, já que desde criança, jogava com meu pai e meus primos,
-                     mas foi no universo indie que encontrei jogos que realmente mexeram com minha forma de ver o
-                      mundo. Cada jogo tem um “pedacinho” de quem o desenvolveu, e é isso que me atrai, pois sentia
-                       isso quando desenhava ou criava algo.
+                    mas foi no universo dos jogos independentes que encontrei jogos que realmente mexeram com minha forma de ver o
+                    mundo. Cada jogo tem um “pedacinho” de quem o desenvolveu, e é isso que me atrai, pois sentia
+                    isso quando desenhava ou criava algo.
                 </p>
             </div>
             <div class="info-section-tq-i">
@@ -31,11 +48,11 @@
         <div>
             <p>
                 Os jogos indies me ensinaram a olhar além do “mais do mesmo”, expandindo meus horizontes
-                 do que é um jogo, ou melhor, do que é um produto feito com o coração. O que me toca são
-                  os mundos, histórias e emoções genuínas que os desenvolvedores conseguem transmitir,
-                   muitas vezes com orçamentos limitados. Desenvolvedores esses que acabam deixando suas
-                    “marcas” nos jogos, seja em gráficos diferentes, histórias contadas, trilhas sonoras
-                     marcantes ou, até mesmo, revolucionando o mercado com uma nova fórmula.
+                do que é um jogo, ou melhor, do que é um produto feito com o coração. O que me toca são
+                os mundos, histórias e emoções genuínas que os desenvolvedores conseguem transmitir,
+                muitas vezes com orçamentos limitados. Desenvolvedores esses que acabam deixando suas
+                “marcas” nos jogos, seja em gráficos diferentes, histórias contadas, trilhas sonoras
+                marcantes ou, até mesmo, revolucionando o mercado com uma nova fórmula.
             </p>
         </div>
         <div class="frase-section">
@@ -49,45 +66,251 @@
         <div>
             <p>
                 Este projeto nasceu para compartilhar a paixão por jogos que, assim como me aconteceu,
-                 podem transformar a maneira como vemos o mundo.
+                podem transformar a maneira como vemos o mundo. E, caso não transfome, você ajudou algum desenvolvedor
+                 a concretizar um sonho próprio.
             </p>
         </div>
     </div>
     <div class="games-section">
         <h2>Uma biblioteca de variedades</h2>
-        <div class="div-p-games">
-            <p>Alguns indies se destacam pela sua identidade  visual marcante</p>
+        <div class="div-p-games" id="visual">
+            <p>Alguns indies se destacam pela sua identidade visual marcante</p>
             <p>(o que me encanta muito, já que sou apaixonado por coisas visuais)</p>
         </div>
         <div class="games-section-1">
-            <div class="games-card" style="background-image: url(assets/game1.png);">
-                <img src="assets/game1-logo.png" alt="">
-                <video autoplay muted loop playsinline src="assets/video/game1-video.mp4" class="background-video"></video>
+            <div class="games-card" style="background-image: url(assets/img_jogos/game1.png);">
+                <img src="assets/img_jogos/game1-logo.png" alt="">
+                <video autoplay muted loop playsinline src="assets/video/game1-video.mp4"
+                    class="background-video"></video>
             </div>
-            <div class="games-card" style="background-image: url(assets/game2.png);">
-                <img src="assets/game2-logo.png" alt="">
-                <video autoplay muted loop playsinline src="assets/video/game2-video.mp4" class="background-video"></video>
+            <div class="games-card" style="background-image: url(assets/img_jogos/game2.png);">
+                <img src="assets/img_jogos/game2-logo.png" alt="">
+                <video autoplay muted loop playsinline src="assets/video/game2-video.mp4"
+                    class="background-video"></video>
             </div>
-            <div class="games-card" style="background-image: url(assets/game3.png);">
-                <img src="assets/game3-logo.png" alt="">
-                <video autoplay muted loop playsinline src="assets/video/game3-video.mp4" class="background-video"></video>
+            <div class="games-card" style="background-image: url(assets/img_jogos/game3.png);">
+                <img src="assets/img_jogos/game3-logo.png" alt="">
+                <video autoplay muted loop playsinline src="assets/video/game3-video.mp4"
+                    class="background-video"></video>
             </div>
-            <div class="games-card" style="background-image: url(assets/game4.png);">
-                <img src="assets/game4-logo.png" alt="">
-                <video autoplay muted loop playsinline src="assets/video/game4-video.mp4" class="background-video"></video>
+            <div class="games-card" style="background-image: url(assets/img_jogos/game4.png);">
+                <img src="assets/img_jogos/game4-logo.png" alt="">
+                <video autoplay muted loop playsinline src="assets/video/game4-video.mp4"
+                    class="background-video"></video>
             </div>
         </div>
-        <div class="div-p-games">
+        <div class="div-p-games" id="narrativas">
             <p>Alguns outros por sua história impactante</p>
         </div>
         <div class="games-section-2">
-            <div class="games-card-2" style="background-image: url(assets/game5.png);">
-                <img src="assets/game5-logo.png" alt="">
+            <div class="games-card-2" style="background-image: url(assets/img_jogos/game5.png);">
+                <div class="overlay1"></div>
+                <img src="assets/img_jogos/game5-logo.png" alt="">
+                <p>Resumo: Uma jovem passa por estágios do luto em um mundo em constante transformação. <br>
+                Por que me tocou: A narrativa não usa palavras, só arte e música — e mesmo assim emociona profundamente. Me fez refletir sobre perda e superação.</p>
             </div>
-            <div class="games-card-2" style="background-image: url(assets/game5.png);">
-                <img src="assets/game5-logo.png" alt="">
+            <div class="games-card-2" style="background-image: url(assets/img_fundo_recomendados/recomenda-fundo3.png);">
+                <div class="overlay1"></div>
+                <img src="assets/img_jogos/game6-logo.png" alt="">
+                <p>Resumo: Madeline escala uma montanha enquanto lida com ansiedade e autoaceitação.<br>
+                    Por que me tocou: Me ensinou que nossos desafios internos são reais, mas superáveis. A forma como o jogo trata saúde mental é incrível.</p>
+            </div>
+        </div>
+        <div class="div-p-games">
+            <p>Ou por sua gameplay única</p>
+        </div>
+        <div class="games-section-1">
+            <div class="games-card3" style="background-image: url(assets/img_jogos/game7.png);">
+                <img src="assets/img_jogos/game7-logo.png" alt="">
+                <video autoplay muted loop playsinline src="assets/video/game7-video.mp4"
+                    class="background-video"></video>
+            </div>
+            <div class="games-card3" style="background-image: url(assets/img_jogos/game6.png);">
+                <img src="assets/img_jogos/game8-logo.png" alt="">
+                <video autoplay muted loop playsinline src="assets/video/game8-video.mp4"
+                    class="background-video"></video>
+            </div>
+            <div class="games-card3" style="background-image: url(assets/img_jogos/game9.png);">
+                <img src="assets/img_jogos/game9-logo.png" alt="">
+                <video autoplay muted loop playsinline src="assets/video/game9-video.mp4"
+                    class="background-video"></video>
+            </div>
+        </div>
+        <div class="div-p-games">
+            <p>Apesar disso, apenas dois brigam pelo título de <b>"O MELHOR"</b></p>
+            <p>(pelo menos para mim)</p>
+        </div>
+        <div class="games-section-3" id="games_section_3">
+            <div class="games-card-4 card1" onmouseover="expandirCard(1)" onmouseleave="resetar()"
+             style="background-image: url(assets/img_fundo_recomendados/recomenda-fundo2.jpg);">
+                <div class="overlay1"></div>
+                <img src="assets/img_jogos/game11-logo.png" alt="">
+                <div class="texto-card-4">
+                    <p><strong>Hollow Knight (2017) - Team Cherry</strong></p>
+                    <p><strong>Por que me tocou:</strong></p>
+                    <p>Hollow Knight foi o primeiro jogo indie que eu joguei - ou pelo menos o primeiro que
+                        eu lembro de conhecer por esse termo. A jornada pelas terras de Hollownest me mostrou
+                        o que é possível realizar quando se trabalha com calma e amor em um projeto. Por 
+                        ser um jogo tão bom, deixou uma marca em mim e formoy uma ótima primeira impressão
+                        dos jogos independentes.
+                    </p>
+                    <p>
+                        Os cenários que o jogador passa durante o jogo são de brilhar os olhos, e as 
+                        músicas são lindas (em especial, a trilha sonora da Cidade das Lágrimas). Portanto,
+                        acredito que todos que gostam de videogame deveriam jogar esse jogo pelo menos uma vez.
+                    </p>
+                </div>
+            </div>
+            <div class="games-card-4 card2" onmouseover="expandirCard(2)" onmouseleave="resetar()"
+             style="background-image: url(assets/img_jogos/game10.png);">
+                <div class="overlay1"></div>
+                <img src="assets/img_jogos/game10-logo.png" alt="">
+                <div class="texto-card-4">
+                    <p><strong>Outer Wilds (2019) - Mobius Digital</strong></p>
+                    <p><strong>Por que me tocou:</strong></p>
+                    <p>A minha história com Outer Wilds é até engraçada. Um amigo meu sempre falava para eu jogar,
+                        mas sempre que eu perguntava do que se tratava, ele não me dizia, pois, de acordo com ele, iria estragar a experiência.
+                        E bom, ele estava certo. Eu diria que jogar Outer Wilds sem saber de nada sobre ele é o jeito certo.
+                        Então, vou evitar falar o máximo possível sobre o jogo em si. Já que você deve experenciar por conta própria. 
+                    </p>
+                    <p>
+                        Mas bem, o que falar sobre o jogo? Ele me ensinou a aproveitar cada momento, pois não sabemos quando não poderemos mais.
+                        Também me ensinou que o amanhã ainda é dia, ou seja, está tudo bem ir com calma. E me mostrou que, em muitos casos,
+                        os pequenos detalhes podem significar mais que um universo inteiro. 
+                    </p>
+                    <p>
+                        Tudo isso só é possível graças a um conjunto de fatores: a história,
+                        a jogabilidade, o universo, os visuais... e a trilha sonora - que me emociona toda vez que eu escuto
+                         a música "Travelers".
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+    <div class="recomenda-section container" id="recomenda">
+        <div class="div-p-games">
+            <p>Me recomenda um jogo!</p>
+        </div>
+        <div id="mainDiv" class="recomenda-section-main" style="background-image: url(assets/img_fundo_recomendados/recomenda-fundo.png);">
+            <div class="overlay"></div>
+            <div class="recomenda-section-texto container">
+                <div class="recomenda-section-texto-texto" id="texto_recomendado">
+                </div>
+                <div id="video">
+                </div>
+            </div>
+            <div class="recomenda-section-dado-div">
+                <img onclick="randomico()" src="assets/dado.png" alt="">
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Site desenvolvido por Eduardo Nunes como parte do Projeto Individual 2025-1.</p>
+        <p>Um tributo aos jogos independentes, seus criadores e os elementos que tocam o coração.</p>
+        <p>
+            <a href="https://github.com/EduardoNdL"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="none"/><path fill="#fff" fill-rule="evenodd" d="M7.976 0A7.977 7.977 0 0 0 0 7.976c0 3.522 2.3 6.507 5.431 7.584c.392.049.538-.196.538-.392v-1.37c-2.201.49-2.69-1.076-2.69-1.076c-.343-.93-.881-1.175-.881-1.175c-.734-.489.048-.489.048-.489c.783.049 1.224.832 1.224.832c.734 1.223 1.859.88 2.3.685c.048-.538.293-.88.489-1.076c-1.762-.196-3.621-.881-3.621-3.964c0-.88.293-1.566.832-2.153c-.05-.147-.343-.978.098-2.055c0 0 .685-.196 2.201.832c.636-.196 1.322-.245 2.007-.245s1.37.098 2.006.245c1.517-1.027 2.202-.832 2.202-.832c.44 1.077.146 1.908.097 2.104a3.16 3.16 0 0 1 .832 2.153c0 3.083-1.86 3.719-3.62 3.915c.293.244.538.733.538 1.467v2.202c0 .196.146.44.538.392A7.98 7.98 0 0 0 16 7.976C15.951 3.572 12.38 0 7.976 0" clip-rule="evenodd"/></svg></a>
+        </p>
+    </footer>
 </body>
+<script>
+    const recomendados = [
+        {
+            nome: "Inscryption",
+            descricao: "Inscryption é uma odisseia negra, um jogo de cartas roguelike com quebra-cabeças de 'escape-room', construção de baralhos e terror psicológico, tudo num batido sangrento.",
+            video: "https://www.youtube.com/embed/RN5GSIWIN1k?si=wPJef5SH-1gfa1IU",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo1.png"
+        },
+        {
+            nome: "Hollow Knight",
+            descricao: "Hollow Knight é um desafiador jogo de ação e aventura em um vasto mundo subterrâneo desenhado à mão. Explore cavernas em ruínas, lute contra criaturas corrompidas e descubra segredos antigos.",
+            video: "https://www.youtube.com/embed/UAO2urG23S4?si=AQW1VZL8zlwGL6gz",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo2.jpg"
+        },
+        {
+            nome: "Celeste",
+            descricao: "Celeste é uma emocionante aventura de plataforma sobre escalar uma montanha e enfrentar os próprios limites. Com controles precisos e uma narrativa comovente, é uma jornada de superação.",
+            video: "https://www.youtube.com/embed/70d9irlxiB4?si=Agm0g7W-brcnlUuS",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo3.png"
+        },
+        {
+            nome: "Blue Prince",
+            descricao: "Blue Prince é um jogo de mistério arquitetônico onde cada dia revela um novo andar de uma mansão infinita. Com atmosfera surreal, puzzles enigmáticos e narrativa fragmentada, cada jogada é única.",
+            video: "https://www.youtube.com/embed/wIrgdM6shNA?si=8llovKxP6J2e3dOD",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo4.png"
+        },
+        {
+            nome: "Spiritfarer",
+            descricao: "Spiritfarer é um jogo de gerenciamento com uma abordagem calorosa sobre a morte. Construa, cultive e navegue ao lado de espíritos enquanto aprende a dizer adeus.",
+            video: "https://www.youtube.com/embed/4pKJ-NuSjNE?si=I9Ck5vClNP_jHnNa",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo5.png"
+        },
+        {
+            nome: "Katana ZERO",
+            descricao: "Katana ZERO é um jogo de ação estilizado com combate veloz, narrativa fragmentada e estética neo-noir. Cada golpe importa, e cada decisão deixa marcas.",
+            video: "https://www.youtube.com/embed/uo2FOBnt11o?si=YDoS8dwSrfcVIo09",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo6.png"
+        },
+        {
+            nome: "Disco Elysium",
+            descricao: "Disco Elysium é um RPG investigativo sem combates tradicionais, com foco em narrativa, escolhas profundas e diálogos intensos. Assuma o papel de um detetive em crise em uma cidade decadente e cheia de histórias.",
+            video: "https://www.youtube.com/embed/ZHefk0w6F7c?si=3tOhUgVCsoqAA-XH",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo7.png"
+        },
+        {
+            nome: "Stray",
+            descricao: "Stray é uma aventura atmosférica onde você joga como um gato perdido em uma cidade futurista habitada por robôs. Resolva puzzles e descubra segredos para voltar à superfície.",
+            video: "https://www.youtube.com/embed/u84hRUQlaio?si=hI6RwJR_wkMD4f78",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo8.png"
+        },
+        {
+            nome: "A Hat in Time",
+            descricao: "A Hat in Time é um colorido e encantador jogo de plataforma 3D, onde você joga como uma garotinha viajante do tempo. Cheio de carisma, variedade e humor, é um tributo aos clássicos do gênero.",
+            video: "https://www.youtube.com/embed/qDNz8JDIPck?si=mUH-R9VkW-7Nm2DC",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo9.png"
+        },
+        {
+            nome: "Clair Obscur: Expedition 33",
+            descricao: "Expedition 33 é um RPG de ação com visual estilizado e combates táticos. Participe de uma jornada contra o tempo para impedir um ciclo de destruição em um mundo fascinante e ameaçador.",
+            video: "https://www.youtube.com/embed/wWGIakhqr5g?si=B7ly4AUgef05v65m",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo10.png"
+        },
+        {
+            nome: "Stardew Valley",
+            descricao: "Stardew Valley é um simulador de vida no campo que mistura agricultura, relacionamentos e exploração de cavernas. Com um charme retrô e liberdade total, é um refúgio acolhedor para qualquer jogador.",
+            video: "https://www.youtube.com/embed/ot7uXNQskhs?si=RH5spcyaZpDE02wr",
+            fundo: "assets/img_fundo_recomendados/recomenda-fundo11.png"
+        }
+    ]
+
+    const mainDiv = document.getElementById("mainDiv");
+
+    function expandirCard(num) {
+        games_section_3.classList.remove('expand-1', 'expand-2')
+        games_section_3.classList.add('expand-' + num)
+    }
+
+    function resetar() {
+        games_section_3.classList.remove('expand-1', 'expand-2')
+    }
+    
+    function randomico() {
+        var numeroReco = recomendados[Math.floor(Math.random() * recomendados.length)]
+
+        mainDiv.style.backgroundImage = `url(${numeroReco.fundo})`;
+
+        texto_recomendado.innerHTML = `<h2>${numeroReco.nome}</h2>
+                    <p>${numeroReco.descricao}</p>`
+
+        video.innerHTML = `<iframe
+                        width="500" height="300"
+                        src="${numeroReco.video}"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                        </iframe>`
+
+        
+    }
+</script>
+
 </html>
