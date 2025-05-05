@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header container">
+        <div class="logo"><a href="index.html">PING</a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html#sobre">Sobre</a></li>
+                <li><a href="index.html#visual">Visual</a></li>
+                <li><a href="index.html#narrativas">Narrativas</a></li>
+                <li><a href="index.html#recomenda">Recomende</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="registro" style="background-image: url(assets/cadastro.png);">
+        <div class="erro" id="erro">
+            <div class="card-erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
+        <div class="registro-container">
+            <div class="cadastro-container">
+                <h1>Crie sua nova conta</h1>
+                <div class="cadastro-inputs">
+                        <div class="cada">
+                            <input type="text" placeholder="Nome" id="ipt_nome">
+                            <input type="text" placeholder="Email" id="ipt_email">                            
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Senha" id="ipt_senha">
+                            <input type="text" placeholder="Confirmar senha" id="ipt_senhaC">
+                        </div>
+                        <div>
+                            <select name="" id="slc_jogo">
+                                <option value="" disabled selected hidden>Qual seu jogo favorito?</option>
+                                <option value="a_short_hike">A Short Hike</option>
+                                <option value="celeste">Celeste</option>
+                                <option value="cuphead">Cuphead</option>
+                                <option value="gris">Gris</option>
+                                <option value="hollow_knight">Hollow Knight</option>
+                                <option value="inside">Inside</option>
+                                <option value="inscryption">Inscryption</option>
+                                <option value="journey">Journey</option>
+                                <option value="katana_zero">Katana ZERO</option>
+                                <option value="limbo">Limbo</option>
+                                <option value="little_nightmares">Little Nightmares</option>
+                                <option value="ori_and_the_blind_forest">Ori and the Blind Forest</option>
+                                <option value="outer_wilds">Outer Wilds</option>
+                                <option value="oxenfree">Oxenfree</option>
+                                <option value="slay_the_spire">Slay the Spire</option>
+                                <option value="spiritfarer">Spiritfarer</option>
+                                <option value="stardew_valley">Stardew Valley</option>
+                                <option value="the_witness">The Witness</option>
+                                <option value="tunic">Tunic</option>
+                                <option value="undertale">Undertale</option>
+                            </select>
+                            <select name="" id="slc_gen">
+                                <option value="" disabled selected hidden>Qual seu gênero favorito?</option>
+                                <option value="plataforma">Plataforma</option>
+                                <option value="aventura">Aventura</option>
+                                <option value="puzzle">Puzzle / Quebra-cabeça</option>
+                                <option value="rpg">RPG</option>
+                                <option value="ação">Ação</option>
+                                <option value="terror">Terror</option>
+                                <option value="simulação">Simulação</option>
+                                <option value="metroidvania">Metroidvania</option>
+                                <option value="visual_novel">Visual Novel</option>
+                                <option value="point_and_click">Point and Click</option>
+                                <option value="narrativo">Narrativo / Foco em história</option>
+                                <option value="estratégia">Estratégia</option>
+                                <option value="sandbox">Sandbox / Mundo aberto</option>
+                                <option value="musical">Musical / Ritmo</option>
+                                <option value="experiência_artística">Experiência Artística</option>
+                            </select>
+                        </div>
+                </div>
+                <button onclick="validar()">Cadastre-se</button>
+                <p>Já tem uma conta? Faça <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function validar() {
+        var nome = ipt_nome.value
+        var email = ipt_email.value
+        var senha = ipt_senha.value
+        var confirmarSenha = ipt_senhaC.value
+        var jogoFav = slc_jogo.value
+        var genFav = slc_gen.value
+
+        if (
+            nome == "" ||
+            email == "" ||
+            senha == "" ||
+            confirmarSenha == "" ||
+            jogoFav == "" ||
+            genFav == ""
+        ) {
+            erro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para todos os campos em branco)";
+
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+
+        // Verificando se há algo de errado com os campos
+        if (nome.length <= 1) {
+            erro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para validação de nome. Nome ter que ter mais de 1 caractere)";
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+
+        if (email.indexOf('@') < 0) {
+            erro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para validação de email. Email ter que conter @)";
+
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+
+        if (senha.length <= 6) {
+            erro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para validação de senha. Senha ter que ter mais de 6 caractere)";
+
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+
+        if (senha != confirmarSenha) {
+            erro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para validação de confirmação de senha. As senhas tem que coincidir)";
+
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+    }
+
+    function sumirMensagem() {
+        erro.style.display = "none";
+    }
+</script>
+
+</html>
