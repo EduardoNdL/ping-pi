@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header container">
+        <div class="logo"><a href="index.html">PING</a></div>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#visual">Visual</a></li>
+                <li><a href="#narrativas">Narrativas</a></li>
+                <li><a href="#recomenda">Recomende</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="quiz" class="quiz">
+        <div class="quiz-container">
+            <h2>Quiz: Você realmente jogou Outer Wilds?</h2>
+            <div id="quiz_container">
+
+            </div>
+            <div class="button-quiz" id="button_quiz">
+            </div>
+            <p id="resultado"></p>
+        </div>
+    </div>
+</body>
+<script>
+    const perguntas = [
+        "O que acontece após 22 minutos no jogo?",
+        "Qual é o planeta coberto por areia que se transfere para o planeta irmão?",
+        "Qual é a raça alienígena extinta encontrada no jogo?",
+        "Qual planeta tem um buraco negro em seu centro?",
+        "O que acontece quando você entra no Olho do Universo?"
+    ]
+
+    const respostas = [
+        ["Um planeta explode", "O ciclo temporal reinicia com uma supernova", "Você acorda em um novo planeta"],
+        ["Gêmeo Cinzento", "Gêmeo de Areia", "Lanterna Vazia"],
+        ["Nomai", "Ancestrais", "Vigilantes"],
+        ["Espinho do Cacto", "Gêmeo Cinzento", "Vale Incerto"],
+        ["Você encontra uma civilização avançada", "O ciclo do tempo é interrompido e ocorre uma nova criação", "Você se perde no vazio para sempre"]
+    ]
+
+    const respostasCorretas = [1, 0, 0, 2, 1]
+
+    var indice = 0;
+
+    function construirPergunta() {
+        quiz_container.innerHTML = `
+        <div class="pergunta">
+            <p>${perguntas[indice]}</p>
+            <div class="resposta">
+                <label><input type="radio" name="q${indice}" value="a"> ${respostas[indice][0]}</label>
+                <label><input type="radio" name="q${indice}" value="b"> ${respostas[indice][1]}</label>
+                <label><input type="radio" name="q${indice}" value="c"> ${respostas[indice][2]}</label>
+            </div>
+        </div>`
+    }
+
+    function atualizarBotoes() {
+    button_quiz.innerHTML = '';
+    if (indice == 0) {
+        button_quiz.classList.add("sozinho");
+        button_quiz.innerHTML = `
+            <button onclick="proxima()" class="avancar1">→</button>`;
+    } else if (indice < (perguntas.length - 1)) {
+        button_quiz.classList.remove("sozinho");
+        button_quiz.innerHTML = `
+            <button onclick="voltar()">←</button>
+            <button onclick="proxima()">→</button>`;
+    } else {
+        button_quiz.classList.remove("sozinho");
+        button_quiz.innerHTML = `
+            <button onclick="voltar()">←</button>
+            <button onclick="verificarRespostas()">Verificar</button>`;
+    }
+}
+
+    function proxima() {
+        if (indice < (perguntas.length - 1)) {
+            indice++
+            construirPergunta()
+            atualizarBotoes()
+        }
+    }
+    function voltar() {
+        if (indice > 0) {
+            indice--
+            construirPergunta()
+            atualizarBotoes()
+        }
+    }
+
+    construirPergunta()
+    atualizarBotoes()
+</script>
+
+</html>
+
+<!-- // for (let i = 0; i < perguntas.length; i++) {
+    //     quiz_container.innerHTML += `
+    //     <div class="pergunta">
+    //             <p>${perguntas[i]}</p>
+    //             <div class="resposta">
+    //                 <label><input type="radio" name="q${i}" value="a"> ${respostas[i][0]}</label>
+    //                 <label><input type="radio" name="q${i}" value="b"> ${respostas[i][1]}</label>
+    //                 <label><input type="radio" name="q${i}" value="c"> ${respostas[i][2]}</label>
+    //             </div>
+    //         </div>`
+    // } -->

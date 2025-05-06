@@ -33,6 +33,7 @@ html {
 body {
     background-color: black;
     font-family: "Montserrat", sans-serif;
+    color: white;
 }
 .header {
     background-color:black;
@@ -607,6 +608,91 @@ body {
     color: white;
 }
 /* Fim cadastro */
+
+/* Quiz */
+.quiz {
+    border-radius: 8px;
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz-container {
+    width: 60%;
+    padding: 30px;
+    background-color: rgb(20, 20, 20);
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-container h2 {
+    font-size: 28px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.pergunta {
+    margin-bottom: 20px;
+}
+
+.pergunta p {
+    font-size: 18px;
+    color: rgb(197, 197, 197);
+    margin-bottom: 10px;
+}
+
+.resposta label {
+    display: block;
+    font-size: 16px;
+    background-color: #3a3a3a;
+    padding: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.resposta input[type="radio"] {
+    margin-right: 10px;
+}
+label:has(input[type="radio"]:checked) {
+    background-color: #965F9B;
+}
+
+.button-quiz {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.button-quiz button {
+    display: flex;
+    padding: 10px 20px;
+    background-color: #965F9B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-quiz.sozinho {
+    justify-content: flex-end;
+}
+
+button:hover {
+    background-color: #85558a;
+}
+
+/* Resultado */
+#resultado {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+/* Fiz quiz */
 
 /* Footer */
 .footer {
