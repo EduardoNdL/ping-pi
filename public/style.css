@@ -374,7 +374,7 @@ body {
     background-size: cover;
     overflow: hidden;
     position: relative;
-    transition: width 0.5s ease, opacity 0.5s ease;
+    transition: width 0.2s ease, opacity 0.2s ease;
 }
 
 .games-card-4 .texto-card-4{
@@ -613,14 +613,14 @@ body {
 .quiz {
     border-radius: 8px;
     margin-top: 30px;
-    width: 100%;
+    width: calc(100% - 15%);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .quiz-container {
-    width: 60%;
+    width: 75%;
     padding: 30px;
     background-color: rgb(20, 20, 20);
     display: flex;
@@ -689,10 +689,78 @@ button:hover {
 #resultado {
     margin-top: 20px;
     font-size: 18px;
-    color: #333;
+    color: #b3b3b3;
     font-weight: bold;
 }
 /* Fiz quiz */
+
+/* Header-dashboard */
+.dashboard {
+    display: flex;
+    width: 100%;
+}
+
+.header-dash {
+    background-color:rgb(21, 21, 21);
+    height: 100vh;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.header-dash .logo a {
+    text-decoration: none;
+    color: #965F9B;
+}
+
+.header-dash nav ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 2rem;
+}
+.header-dash nav ul li a {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    color: white;
+    text-decoration: none;
+}
+/* Fim header-dashboard */
+
+/* dash */
+.principal-dash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.quizes {
+    display: flex;
+    margin-top: 3rem;
+    gap: 2rem;
+}
+
+.quizes .games-card-2 {
+    height: 300px;
+    width: 300px;
+    transform: scale(1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.quizes .games-card-2:hover img{
+    opacity: 1;
+}
+.quizes .games-card-2:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
 
 /* Footer */
 .footer {
