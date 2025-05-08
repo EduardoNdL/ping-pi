@@ -67,7 +67,7 @@ body {
 
 .hero {
     position: relative;
-    background-image: url(assets/image_1.png);
+    background-image: url(/public/assets/image_1.png);
     height: 90vh;
     background-size: cover;
     color: white;
@@ -412,7 +412,7 @@ body {
 
 /* Login */
 .login {
-    background-image: url(assets/login.png);
+    background-image: url(/public/assets/login.png);
     height: 84.5vh;
     background-size: cover;
     background-position: center;
@@ -511,7 +511,7 @@ body {
 }
 
 .registro {
-    background-image: url(assets/login.png);
+    background-image: url(/public/assets/registro.png);
     height: 84.5vh;
     background-size: cover;
     background-position: center;
