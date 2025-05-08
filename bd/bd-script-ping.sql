@@ -85,3 +85,5 @@ insert into genero (nomeGenero) values
 insert into quiz (tema, numPergunta) values 
 	('Hollow Knight', 5),
     ('Outer Wilds', 5);
+    
+select * from pontuacao;
