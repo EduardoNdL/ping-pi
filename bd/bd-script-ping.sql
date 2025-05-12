@@ -86,4 +86,55 @@ insert into quiz (tema, numPergunta) values
 	('Hollow Knight', 5),
     ('Outer Wilds', 5);
     
-select * from pontuacao;
+SELECT 
+            tentativa, 
+            tema, 
+            pontuacao, 
+            dataHora,
+            (SELECT SUM(pontuacao) FROM pontuacao WHERE fkUsuario = 1) AS totalAcertos,
+            (SELECT SUM(numPergunta) FROM quiz WHERE fkUsuario = 1) AS totalPerguntas,
+            (SELECT MAX(dataHora) FROM pontuacao WHERE fkUsuario = 1) AS ultimaTentativa
+        FROM pontuacao
+        INNER JOIN quiz ON idQuiz = fkQuiz
+        WHERE fkUsuario = 1
+        GROUP BY tentativa, tema, pontuacao, dataHora;
+        
+SELECT 
+            tentativa, 
+            tema, 
+            pontuacao, 
+            dataHora,
+            (select sum(pontuacao) from pontuacao where fkUsuario = 1) as totalAcertos,
+            (select count(tentativa) from pontuacao where fkUsuario = 1) as totalTentativas,
+            numPergunta
+        FROM pontuacao
+        INNER JOIN quiz ON idQuiz = 2
+        WHERE fkUsuario = 1 and fkQuiz = 2
+        group by tentativa, tema, pontuacao, dataHora
+        order by dataHora;
+        
+SELECT 
+    nomeJogo,
+    ROUND((COUNT(idUsuario) / (SELECT COUNT(*) FROM usuario)) * 100, 2) AS porcentagemJogo,
+    nomeGenero,
+    ROUND((COUNT(idUsuario) / (SELECT COUNT(*) FROM usuario)) * 100, 2) AS porcentagemGenero
+FROM usuario
+inner JOIN jogo  ON fkJogo = idJogo
+inner join genero on fkGenero = idGenero
+GROUP BY nomeJogo, nomeGenero;
+
+select * from usuario;
+
+ SELECT 
+            nomeJogo,
+            ROUND((COUNT(*) * 100.0) / (SELECT COUNT(*) FROM usuario), 2) AS porcentagemJogo
+        FROM usuario
+        JOIN jogo ON fkJogo = idJogo
+        GROUP BY nomeJogo;
+        
+SELECT 
+            nomeGenero,
+            ROUND((COUNT(*) * 100.0) / (SELECT COUNT(*) FROM usuario), 2) AS porcentagemGenero
+        FROM usuario
+        JOIN genero ON fkGenero = idGenero
+        GROUP BY nomeGenero;
