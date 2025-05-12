@@ -12,4 +12,12 @@ router.post("/listarTentativas", function (req, res) {
     quizController.listarTent(req, res);
 })
 
+router.post("/buscarInfoDash", function (req, res) {
+    quizController.buscarInfoDash(req, res);
+})
+
+router.post("/buscarDadosEspecifico", function (req, res) {
+    quizController.buscarDadosEspecifico(req, res);
+})
+
 module.exports = router;

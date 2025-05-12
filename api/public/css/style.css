@@ -841,11 +841,16 @@ button:hover {
     flex-wrap: wrap;
 }
 
+
 .selecione-dash {
     width: 40%;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
+
+.disabled {
+    display: none !important;
 }
 
 .select-select {
