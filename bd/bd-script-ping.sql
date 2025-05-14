@@ -92,7 +92,7 @@ SELECT
             pontuacao, 
             dataHora,
             (SELECT SUM(pontuacao) FROM pontuacao WHERE fkUsuario = 1) AS totalAcertos,
-            (SELECT SUM(numPergunta) FROM quiz WHERE fkUsuario = 1) AS totalPerguntas,
+            (SELECT SUM(numPergunta) FROM pontuacao p inner join quiz on idQuiz = fkQuiz) AS totalPerguntas,
             (SELECT MAX(dataHora) FROM pontuacao WHERE fkUsuario = 1) AS ultimaTentativa
         FROM pontuacao
         INNER JOIN quiz ON idQuiz = fkQuiz
@@ -104,8 +104,8 @@ SELECT
             tema, 
             pontuacao, 
             dataHora,
-            (select sum(pontuacao) from pontuacao where fkUsuario = 1) as totalAcertos,
-            (select count(tentativa) from pontuacao where fkUsuario = 1) as totalTentativas,
+            (select sum(pontuacao) from pontuacao where fkUsuario = 1 and fkQuiz = 2) as totalAcertos,
+            (select count(tentativa) from pontuacao where fkUsuario = 1 and fkQuiz = 2) as totalTentativas,
             numPergunta
         FROM pontuacao
         INNER JOIN quiz ON idQuiz = 2
@@ -138,3 +138,11 @@ SELECT
         FROM usuario
         JOIN genero ON fkGenero = idGenero
         GROUP BY nomeGenero;
+
+select * from pontuacao;
+SELECT idUsuario, nome, email, fkJogo as jogo_favorito, fkGenero as genero_favorito,
+nomeJogo as jogoFav, nomeGenero as generoFav
+FROM usuario
+inner join jogo on fkJogo = idJogo
+inner join genero on fkGenero = idGenero
+WHERE email = 'teste@gmail.com' AND senha = 1234567;
