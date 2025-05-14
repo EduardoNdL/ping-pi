@@ -14,7 +14,7 @@
     <div class="header container">
         <div class="logo"><a href="index.html">PING</a></div>
         <nav>
-            <ul>
+            <ul id="conteudo_header">
                 <li><a href="index.html#sobre">Sobre</a></li>
                 <li><a href="index.html#visual">Visual</a></li>
                 <li><a href="index.html#narrativas">Narrativas</a></li>
@@ -38,8 +38,8 @@
                         <input type="text" placeholder="Email" id="ipt_email">
                     </div>
                     <div>
-                        <input type="text" placeholder="Senha" id="ipt_senha">
-                        <input type="text" placeholder="Confirmar senha" id="ipt_senhaC">
+                        <input type="password" placeholder="Senha" id="ipt_senha">
+                        <input type="password" placeholder="Confirmar senha" id="ipt_senhaC">
                     </div>
                     <div>
                         <select name="" id="slc_jogo">
@@ -175,10 +175,14 @@
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    cardErro.style.display = "block";
-
+                    erro.classList.remove("erro")
+                    erro.classList.add("validado")
+                    erro.style.display = "block"
                     mensagem_erro.innerHTML =
                         "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                    setTimeout(() => {
+                        erro.style.display = "none";
+                    }, 1999);
 
                     setTimeout(() => {
                         window.location = "login.html";

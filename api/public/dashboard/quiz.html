@@ -11,13 +11,14 @@
 <body>
     <div class="dashboard">
         <div class="header-dash">
-            <div class="logo"><a href="../index.html">PING</a></div>
+            <div class="logo"><a href="../index.html">MERAKI</a></div>
             <nav>
-                <ul>
+                <ul id="conteudo_header">
                     <li><a href="../index.html#sobre">Sobre</a></li>
                     <li><a href="dashboard-quiz.html">Quiz</a></li>
                     <li><a href="../index.html#recomenda">Recomende</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="#" onclick="limparSessao()">Sair</a></li>
                 </ul>
             </nav>
         </div>
@@ -34,6 +35,8 @@
         </div>
     </div>
 </body>
+<script src="../js/sessao.js"></script>
+
 <script>
     var fkquizVar = 2
 
@@ -127,26 +130,26 @@
     function contarTentativas() {
         var fkusuarioVar = Number(sessionStorage.ID_USUARIO);
 
-    fetch("/quiz/listarTentativas", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            fkUsuarioServer: fkusuarioVar,
-            fkQuizServer: fkquizVar
-        }),
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.length > 0) {
-                tentativaAtual = data[0].tentativa + 1;
-            }
-            console.log(`Tentativa atual: ${tentativaAtual}`);
+        fetch("/quiz/listarTentativas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkUsuarioServer: fkusuarioVar,
+                fkQuizServer: fkquizVar
+            }),
         })
-        .catch(err => {
-            console.error("Erro ao buscar tentativas:", err);
-        });
+            .then(res => res.json())
+            .then(data => {
+                if (data.length > 0) {
+                    tentativaAtual = data[0].tentativa + 1;
+                }
+                console.log(`Tentativa atual: ${tentativaAtual}`);
+            })
+            .catch(err => {
+                console.error("Erro ao buscar tentativas:", err);
+            });
     }
 
     function verificar() {

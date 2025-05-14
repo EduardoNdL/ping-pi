@@ -7,12 +7,12 @@ function buscarInfoDash(fkUsuario) {
             tema, 
             pontuacao, 
             dataHora,
-            (SELECT SUM(pontuacao) FROM pontuacao WHERE fkUsuario = 1) AS totalAcertos,
-            (SELECT SUM(numPergunta) FROM pontuacao p inner join quiz on idQuiz = fkQuiz) AS totalPerguntas,
-            (SELECT MAX(dataHora) FROM pontuacao WHERE fkUsuario = 1) AS ultimaTentativa
+            (SELECT SUM(pontuacao) FROM pontuacao WHERE fkUsuario = ${fkUsuario}) AS totalAcertos,
+            (SELECT SUM(numPergunta) FROM pontuacao p inner join quiz on idQuiz = fkQuiz and fkUsuario = ${fkUsuario}) AS totalPerguntas,
+            (SELECT MAX(dataHora) FROM pontuacao WHERE fkUsuario = ${fkUsuario}) AS ultimaTentativa
         FROM pontuacao
         INNER JOIN quiz ON idQuiz = fkQuiz
-        WHERE fkUsuario = 1
+        WHERE fkUsuario = ${fkUsuario}
         GROUP BY tentativa, tema, pontuacao, dataHora;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -29,7 +29,7 @@ function buscarDadosEspecifico(fkQuiz, fkUsuario) {
             (select count(tentativa) from pontuacao where fkUsuario = ${fkUsuario} and fkQUiz = ${fkQuiz}) as totalTentativas,
             numPergunta
         FROM pontuacao
-        INNER JOIN quiz ON idQuiz = ${fkUsuario}
+        INNER JOIN quiz ON idQuiz = fkQuiz
         WHERE fkUsuario = ${fkUsuario} and fkQuiz = ${fkQuiz}
         group by tentativa, tema, pontuacao, dataHora
         order by dataHora;`;
@@ -46,7 +46,7 @@ function buscarGraficoJogos() {
             ROUND((COUNT(*) * 100.0) / (SELECT COUNT(*) FROM usuario), 2) AS porcentagemJogo
         FROM usuario
         JOIN jogo ON fkJogo = idJogo
-        GROUP BY nomeJogo;
+        GROUP BY nomeJogo ORDER BY porcentagemJogo DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -60,7 +60,7 @@ function buscarGraficoGeneros() {
             ROUND((COUNT(*) * 100.0) / (SELECT COUNT(*) FROM usuario), 2) AS porcentagemGenero
         FROM usuario
         JOIN genero ON fkGenero = idGenero
-        GROUP BY nomeGenero;
+        GROUP BY nomeGenero ORDER BY porcentagemGenero DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

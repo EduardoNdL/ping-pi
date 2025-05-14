@@ -12,13 +12,14 @@
 <body>
     <div class="dashboard">
         <div class="header-dash">
-            <div class="logo"><a href="../index.html">PING</a></div>
+            <div class="logo"><a href="../index.html">MERAKI</a></div>
             <nav>
-                <ul>
+                <ul id="conteudo_header">
                     <li><a href="../index.html#sobre">Sobre</a></li>
                     <li><a href="dashboard-quiz.html">Quiz</a></li>
                     <li><a href="../index.html#recomenda">Recomende</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="#" onclick="limparSessao()">Sair</a></li>
                 </ul>
             </nav>
         </div>
@@ -70,12 +71,14 @@
                     <h3>Comparações com todos os usuários</h3>
                     <div class="grafico-container">
                         <div>
-                            <p>Jogo favorito: <span id="jogoFavorito">Hollow Knight</span></p>
+                            <p>Jogo favorito: <span id="jogoFavoritoAlll">Hollow Knight</span></p>
                             <canvas id="grafico1"></canvas>
+                            <p>Seu jogo favorito: <span id="jogoFavorito">Hollow Knight</span></p>
                         </div>
                         <div>
-                            <p>Gênero favorito: <span id="generoFavorito">Metroidvania</span></p>
+                            <p>Gênero favorito: <span id="generoFavoritoAll">Metroidvania</span></p>
                             <canvas id="grafico2"></canvas>
+                            <p>Seu gênero favorito: <span id="generoFavorito">Metroidvania</span></p>
                         </div>
                     </div>
                 </div>
@@ -84,6 +87,8 @@
         </div>
     </div>
 </body>
+<script src="../js/sessao.js"></script>
+
 <script>
     dash_user.innerHTML = sessionStorage.NOME_USUARIO;
     jogoFavorito.innerHTML = sessionStorage.JOGO_USUARIO;
@@ -184,7 +189,9 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    let proximaAtualizacao; 
+    let proximaAtualizacao;
+    let jogoFavoritoAll = ""
+    let genFavoritoAll = ""
 
     function obterDadosGrafico(buscar, idCanvas) {
 
@@ -210,7 +217,7 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados de jogos p/ gráfico: ${error.message}`);
             });
-        }
+    }
 
     // // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
@@ -249,11 +256,18 @@
             if (registro.porcentagemJogo) {
                 labels.push(registro.nomeJogo)
                 dados.datasets[0].data.push(registro.porcentagemJogo);
-            } else if(registro.porcentagemGenero) {
+                jogoFavoritoAll = resposta[resposta.length - 1].nomeJogo
+                jogoFavoritoAlll.innerHTML = `${jogoFavoritoAll}`;
+                console.log(jogoFavoritoAll)
+            } else if (registro.porcentagemGenero) {
                 labels.push(registro.nomeGenero)
                 dados.datasets[0].data.push(registro.porcentagemGenero);
+                genFavoritoAll = resposta[resposta.length - 1].nomeGenero
+                generoFavoritoAll.innerHTML = `${genFavoritoAll}`;
+
             }
         }
+
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
@@ -288,7 +302,7 @@
             config
         );
 
-        
+
         // setTimeout(() => atualizarGrafico(dados, myChart), 2000);
     }
 
@@ -363,6 +377,7 @@
     buscarInfoDash();
     obterDadosGrafico("Jogos", "grafico1");
     obterDadosGrafico("Generos", "grafico2");
+
     // obterDadosJogos();
     // obterDadosGeneros();
 

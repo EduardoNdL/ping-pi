@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/sessao.js"></script>
 </head>
+
 <body>
     <div class="header container">
-        <div class="logo"><a href="index.html">PING</a></div>
+        <div class="logo"><a href="index.html">MERAKI</a></div>
         <nav>
-            <ul>
+            <ul id="conteudo_header">
                 <li><a href="index.html#sobre">Sobre</a></li>
                 <li><a href="index.html#visual">Visual</a></li>
                 <li><a href="index.html#narrativas">Narrativas</a></li>
@@ -21,6 +23,11 @@
         </nav>
     </div>
     <div class="login" style="background-image: url(assets/login.png);">
+        <div class="erro" id="erro">
+            <div class="card-erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
         <div class="login-container">
             <h1>Login in</h1>
             <div class="login-inputs">
@@ -33,20 +40,22 @@
     </div>
 </body>
 <script>
-function entrar() {
+    function entrar() {
         // aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            erro.style.display = "block"
+            mensagem_erro.innerHTML = "(Email ou senha inválidos)";
+            setTimeout(() => {
+                erro.style.display = "none";
+            }, 5000);
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            setInterval(sumirMensagem, 1000)
         }
 
         fetch("/usuarios/autenticar", {
@@ -72,10 +81,19 @@ function entrar() {
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.JOGO_USUARIO = json.jogoFav;
                     sessionStorage.GENERO_USUARIO = json.generoFav;
+                    sessionStorage.Logou = "Sim"
+
+                    erro.classList.remove("erro")
+                    erro.classList.add("validado")
+                    erro.style.display = "block"
+                    mensagem_erro.innerHTML = "(Email ou senha inválidos)";
+                    setTimeout(() => {
+                        erro.style.display = "none";
+                    }, 1999);
 
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 2000); // apenas para exibir o loading
 
                 });
 
@@ -97,7 +115,8 @@ function entrar() {
     }
 
     function sumirMensagem() {
-        cardErro.style.display = "none"
+        erro.style.display = "none"
     }
 </script>
+
 </html>

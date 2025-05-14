@@ -541,6 +541,7 @@ button {
     height: 75px;
     background-color: rgb(201, 114, 114);
     right: 10px;
+    top: 100px;
     z-index: 10;
     padding: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
@@ -548,6 +549,22 @@ button {
     border-radius: 8px;
     margin-top: 10px;
     color: rgb(105, 1, 1);
+}
+.validado {
+    display: none;
+    position: absolute;
+    width: 300px;
+    height: 75px;
+    background-color: rgb(127, 201, 109);
+    right: 10px;
+    top: 100px;
+    z-index: 10;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    border: 1px solid darkgreen;
+    border-radius: 8px;
+    margin-top: 10px;
+    color: rgb(1, 105, 13);
 }
 
 .card-erro {
