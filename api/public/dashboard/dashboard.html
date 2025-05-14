@@ -88,11 +88,12 @@
     </div>
 </body>
 <script src="../js/sessao.js"></script>
-
 <script>
     dash_user.innerHTML = sessionStorage.NOME_USUARIO;
     jogoFavorito.innerHTML = sessionStorage.JOGO_USUARIO;
     generoFavorito.innerHTML = sessionStorage.GENERO_USUARIO;
+
+    window.onload = validarSessao;
 
     function buscarInfoDash() {
         var fkusuarioVar = Number(sessionStorage.ID_USUARIO);
