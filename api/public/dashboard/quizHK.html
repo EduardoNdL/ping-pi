@@ -23,10 +23,9 @@
             </nav>
         </div>
         <div id="quiz" class="quiz">
-            <div class="quiz-container">
+            <div class="quiz-container" id="resultado">
                 <h2>Quiz: Você realmente jogou Hollow Knight?</h2>
                 <div id="quiz_container">
-
                 </div>
                 <div class="button-quiz" id="button_quiz">
                 </div>
@@ -39,7 +38,6 @@
 
 <script>
     var fkquizVar = 1
-    window.onload = validarSessao;
 
     const perguntas = [
         "Qual é o nome da cidade central do reino de Hallownest?",
@@ -174,8 +172,16 @@
             }
         }
 
+        document.getElementById("resultado").innerHTML = `
+        <div style="display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center">
+            <p>Você acertou ${acertosVar} de ${perguntas.length} perguntas.</p> <br>
+            <a href="dashboard.html"><button style="padding-right: 30px">Voltar para a dashboard</button></a>
+        </div>`;
         console.log(respostasMarcadas)
-        document.getElementById("resultado").innerText = `Você acertou ${acertosVar} de ${perguntas.length} perguntas.`;
         fetch("/quiz/cadastrarQuiz", {
             method: "POST",
             headers: {
@@ -206,6 +212,7 @@
             });
 
         return false;
+
     }
 
     construirPergunta()

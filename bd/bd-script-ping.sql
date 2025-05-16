@@ -91,12 +91,12 @@ SELECT
             tema, 
             pontuacao, 
             dataHora,
-            (SELECT SUM(pontuacao) FROM pontuacao WHERE fkUsuario = 1) AS totalAcertos,
-            (SELECT SUM(numPergunta) FROM pontuacao p inner join quiz on idQuiz = fkQuiz) AS totalPerguntas,
-            (SELECT MAX(dataHora) FROM pontuacao WHERE fkUsuario = 1) AS ultimaTentativa
+            (SELECT SUM(pontuacao) FROM pontuacao WHERE fkUsuario = 6) AS totalAcertos,
+            (SELECT SUM(numPergunta) FROM pontuacao p inner join quiz on idQuiz = fkQuiz and fkUsuario = 6) AS totalPerguntas,
+            (SELECT MAX(dataHora) FROM pontuacao WHERE fkUsuario = 6) AS ultimaTentativa
         FROM pontuacao
         INNER JOIN quiz ON idQuiz = fkQuiz
-        WHERE fkUsuario = 1
+        WHERE fkUsuario = 6
         GROUP BY tentativa, tema, pontuacao, dataHora;
         
 SELECT 
@@ -146,3 +146,10 @@ FROM usuario
 inner join jogo on fkJogo = idJogo
 inner join genero on fkGenero = idGenero
 WHERE email = 'teste@gmail.com' AND senha = 1234567;
+
+select * from pontuacao;
+
+CREATE USER 'meraki_api'@'%' IDENTIFIED BY 'Meraki@123';
+grant select, insert on ping.* to 'meraki_api'@'%';
+
+show grants for 'meraki_api'@'%';

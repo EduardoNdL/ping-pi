@@ -177,8 +177,15 @@
 
         console.log(respostasMarcadas)
         console.log(acertosVar)
-        document.getElementById("resultado").innerText = `Você acertou ${acertosVar} de ${perguntas.length} perguntas.`;
-
+        document.getElementById("resultado").innerHTML = `
+        <div style="display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center">
+            <p>Você acertou ${acertosVar} de ${perguntas.length} perguntas.</p> <br>
+            <a href="dashboard.html"><button style="padding-right: 30px">Voltar para a dashboard</button></a>
+        </div>`;
         fetch("/quiz/cadastrarQuiz", {
             method: "POST",
             headers: {
