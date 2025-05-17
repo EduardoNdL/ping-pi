@@ -153,3 +153,12 @@ CREATE USER 'meraki_api'@'%' IDENTIFIED BY 'Meraki@123';
 grant select, insert on ping.* to 'meraki_api'@'%';
 
 show grants for 'meraki_api'@'%';
+
+
+SELECT 
+            nome,
+            SUM(pontuacao) AS totalAcertos
+        FROM pontuacao
+        INNER JOIN quiz ON idQuiz = fkQuiz
+		inner join usuario on idUsuario = fkUsuario
+        GROUP BY nome order by totalAcertos desc;

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../css/style.css" />
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="header-dash">
+            <div class="logo"><a href="../index.html">MERAKI</a></div>
+            <nav>
+                <ul id="conteudo_header">
+                    <li><a href="../index.html#sobre">Sobre</a></li>
+                    <li><a href="../index.html#recomenda">Recomende</a></li>
+                    <li><a href="dashboard-quiz.html">Quiz</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="#" onclick="limparSessao()">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="principal-dash" style="gap: 2rem;">
+            <h2>Ranking</h2>
+            <div style="display: flex; gap: 1rem;">
+                <div class="card-vencedores" style="margin-top: 1rem; background-color: silver;">
+                    <div class="circle">
+                        <p id="circle2"></p>
+                    </div>
+                    <p id="segundo" style="color: #ffffff">Segundo Lugar</p>
+                </div>
+                <div class="card-vencedores" style="background-color: goldenrod;">
+                    <div class="circle">
+                        <p id="circle1"></p>
+                    </div>
+                    <p id="primeiro">Primeiro Lugar</p>
+                </div>
+                <div class="card-vencedores" style="margin-top: 2rem; background-color: brown;">
+                    <div class="circle">
+                        <p id="circle3"></p>
+                    </div>
+                    <p id="terceiro" >Terceiro Lugar</p>
+                </div>
+            </div>
+            <div class="ranking-resto" id="resto">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/sessao.js"></script>
+<script>
+    window.onload = validarSessao;
+</script>
+<script>
+    window.onload = buscar
+    function buscar() {
+        fetch("/ranking/obter", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data[0] != undefined) {
+                    circle1.innerText = data[0].nome.charAt(0).toUpperCase();
+                    primeiro.innerText = `${data[0].nome} - ${data[0].totalAcertos} acertos`
+                } if (data[1] != undefined) {
+                    circle2.innerText = data[1].nome.charAt(0).toUpperCase();
+                    segundo.innerText = `${data[1].nome} - ${data[1].totalAcertos} acertos`
+                } if (data[2] != undefined) {
+                    circle3.innerText = data[2].nome.charAt(0).toUpperCase();
+                    terceiro.innerText = `${data[2].nome} - ${data[2].totalAcertos} acertos`
+                }
+
+                for (let i = 3; i <= data.length; i++) {
+                    resto.innerHTML = `<p>${i}. ${data[i].nome} - ${data[i].totalAcertos} acertos</p>`
+                }
+            })
+            .catch(err => {
+                console.error("Erro ao buscar tentativas:", err);
+            });
+    }
+
+</script>
+
+</html>
