@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Adivinhe o jogo</title>
     <link rel="stylesheet" href="./../css/style.css" />
 </head>
 
@@ -23,27 +23,33 @@
                 </ul>
             </nav>
         </div>
-        <div class="principal-dash" style="gap: 2rem;">
-            <h2>IndieTermo</h2>
+        <div class="principal-dash"
+            style="gap: 0.5rem; overflow-y: scroll; min-height: 100vh; padding: 1rem; justify-content: flex-start;">
+            <h2>Adivinhe o jogo</h2>
             <div style="display: flex; flex-direction: column; gap: 1rem;" class="termo">
                 <div id="imagem">
-                    <div id="blur0" class="blur-fundo"></div>
-                    <div id="blur1" class="blur-fundo"></div>
-                    <div id="blur2" class="blur-fundo"></div>
-                    <div id="blur3" class="blur-fundo"></div>
-                    <div id="blur4" class="blur-fundo"></div>
-                    <div id="blur5" class="blur-fundo"></div>
+                    <div id="blur0" class="blur-fundo" style="top: 0%; left: 0%;"></div>
+                    <div id="blur1" class="blur-fundo" style="top: 0%; left: 50%;"></div>
+                    <div id="blur2" class="blur-fundo" style="top: 33.33%; left: 0%;"></div>
+                    <div id="blur3" class="blur-fundo" style="top: 33.33%; left: 50%;"></div>
+                    <div id="blur4" class="blur-fundo" style="top: 66.66%; left: 0%;"></div>
+                    <div id="blur5" class="blur-fundo" style="top: 66.66%; left: 50%;"></div>
                 </div>
-                <div>
-                    <input type="text" id="resposta">
+            </div>
+            <div class="resposta-gamedle">
+                <input type="text" id="resposta" placeholder="Insira o nome do jogo...">
+            </div>
+            <div class="botoes-gamedle">
+                <div class="button_termo" style="width: 60%;" id="dicaB">
+                    <button onclick="dica()">Dica</button>
                 </div>
-                <div id="tentativas"></div>
+                <div class="button_termo" style="width: 100%;">
+                    <button onclick="verificar()">Validar</button>
+                </div>
             </div>
-            <div id="tentativasRestantes"></div>
-            <div id="resultado"></div>
-            <div class="button_termo">
-                <button onclick="verificar()">validar</button>
-            </div>
+            <div id="tentativas" style="overflow-y: unset;"></div>
+            <div id="tentativasRestantes" style="display: none;"></div>
+            <div id="resultado" style="display: none;"></div>
         </div>
     </div>
 </body>
@@ -57,84 +63,97 @@
             palavra: "celeste",
             dica: "Plataforma sobre escalar uma montanha e lidar com ansiedade.",
             imagem: "../assets/gamedle_jogos/celeste.png"
+        },
+        {
+            palavra: "gris",
+            dica: "Jogo artístico sobre superação do luto, com aquarela animada.",
+            imagem: "../assets/gamedle_jogos/gris.png"
+        },
+        {
+            palavra: "journey",
+            dica: "A jornada silenciosa por um deserto em busca de uma montanha.",
+            imagem: "../assets/gamedle_jogos/journey.png"
+        },
+        {
+            palavra: "limbo",
+            dica: "Aventura preto e branco com atmosfera sombria e puzzles.",
+            imagem: "../assets/gamedle_jogos/limbo.png"
+        },
+        {
+            palavra: "undertale",
+            dica: "RPG onde você não precisa lutar e suas escolhas importam.",
+            imagem: "../assets/gamedle_jogos/undertale.png"
+        },
+        {
+            palavra: "hollow knight",
+            dica: "Exploração subterrânea em Hallownest com combates desafiadores.",
+            imagem: "../assets/gamedle_jogos/hollowknight.png"
+        },
+        {
+            palavra: "cuphead",
+            dica: "Run and gun com visual de desenho animado dos anos 30.",
+            imagem: "../assets/gamedle_jogos/cuphead.png"
+        },
+        {
+            palavra: "tunic",
+            dica: "Aventura com uma raposa em um mundo cheio de segredos e símbolos.",
+            imagem: "../assets/gamedle_jogos/tunic.png"
+        },
+        {
+            palavra: "stardew valley",
+            dica: "Simulador de fazenda com vida social e mistérios em cavernas.",
+            imagem: "../assets/gamedle_jogos/stardewvalley.png"
+        },
+        {
+            palavra: "slay the spire",
+            dica: "Roguelike de cartas onde cada jogada conta na sua sobrevivência.",
+            imagem: "../assets/gamedle_jogos/slaythespire.png"
+        },
+        {
+            palavra: "katana zero",
+            dica: "Ação frenética com estética neon e narrativa sobre trauma.",
+            imagem: "../assets/gamedle_jogos/katana.png"
+        },
+        {
+            palavra: "ori",
+            dica: "Plataforma emocional com uma criatura mágica em uma floresta.",
+            imagem: "../assets/gamedle_jogos/ori.png"
+        },
+        {
+            palavra: "oxenfree",
+            dica: "Narrativa sobrenatural com escolhas em uma ilha assombrada.",
+            imagem: "../assets/gamedle_jogos/oxenfree.png"
+        },
+        {
+            palavra: "inscryption",
+            dica: "Jogo de cartas com elementos de terror e metalinguagem.",
+            imagem: "../assets/gamedle_jogos/inscryption.png"
+        },
+        {
+            palavra: "spiritfarer",
+            dica: "Gerencie um barco e ajude espíritos a encontrar paz.",
+            imagem: "../assets/gamedle_jogos/spiritfarer.png"
+        },
+        {
+            palavra: "inside",
+            dica: "Sucessor espiritual de Limbo com atmosfera tensa e final chocante.",
+            imagem: "../assets/gamedle_jogos/inside.png"
+        },
+        {
+            palavra: "the witness",
+            dica: "Mundo aberto de puzzles com filosofia e mistério.",
+            imagem: "../assets/gamedle_jogos/witness.png"
+        },
+        {
+            palavra: "the case of the golden icon",
+            dica: "Aventura investigativa com mistério, arte pixelada e clima noir retrô.",
+            imagem: "../assets/gamedle_jogos/thegolden.png"
+        },
+        {
+            palavra: "fez",
+            dica: "Gire o mundo 2D para resolver puzzles em 3D.",
+            imagem: "../assets/gamedle_jogos/fez.png"
         }
-        // },
-        // {
-        //   palavra: "gris",
-        //   dica: "Jogo artístico sobre superação do luto, com aquarela animada."
-        // },
-        // {
-        //   palavra: "journey",
-        //   dica: "A jornada silenciosa por um deserto em busca de uma montanha."
-        // },
-        // {
-        //   palavra: "limbo",
-        //   dica: "Aventura preto e branco com atmosfera sombria e puzzles."
-        // },
-        // {
-        //   palavra: "undertale",
-        //   dica: "RPG onde você não precisa lutar e suas escolhas importam."
-        // },
-        // {
-        //   palavra: "hollow knight",
-        //   dica: "Exploração subterrânea em Hallownest com combates desafiadores."
-        // },
-        // {
-        //   palavra: "cuphead",
-        //   dica: "Run and gun com visual de desenho animado dos anos 30."
-        // },
-        // {
-        //   palavra: "tunic",
-        //   dica: "Aventura com uma raposa em um mundo cheio de segredos e símbolos."
-        // },
-        // {
-        //   palavra: "stardew valley",
-        //   dica: "Simulador de fazenda com vida social e mistérios em cavernas."
-        // },
-        // {
-        //   palavra: "slay the spire",
-        //   dica: "Roguelike de cartas onde cada jogada conta na sua sobrevivência."
-        // },
-        // {
-        //   palavra: "katana zero",
-        //   dica: "Ação frenética com estética neon e narrativa sobre trauma."
-        // },
-        // {
-        //   palavra: "ori",
-        //   dica: "Plataforma emocional com uma criatura mágica em uma floresta."
-        // },
-        // {
-        //   palavra: "oxenfree",
-        //   dica: "Narrativa sobrenatural com escolhas em uma ilha assombrada."
-        // },
-        // {
-        //   palavra: "inscryption",
-        //   dica: "Jogo de cartas com elementos de terror e metalinguagem."
-        // },
-        // {
-        //   palavra: "spiritfarer",
-        //   dica: "Gerencie um barco e ajude espíritos a encontrar paz."
-        // },
-        // {
-        //   palavra: "inside",
-        //   dica: "Sucessor espiritual de Limbo com atmosfera tensa e final chocante."
-        // },
-        // {
-        //   palavra: "witness",
-        //   dica: "Mundo aberto de puzzles com filosofia e mistério."
-        // },
-        // {
-        //   palavra: "aegis",
-        //   dica: "JRPG tático com visual encantador e ambientação steampunk."
-        // },
-        // {
-        //   palavra: "fez",
-        //   dica: "Gire o mundo 2D para resolver puzzles em 3D."
-        // },
-        // {
-        //   palavra: "braid",
-        //   dica: "Manipule o tempo para solucionar desafios e repensar narrativas."
-        // }
     ];
 
     window.onload = criar
@@ -170,6 +189,7 @@
                 blur.style.display = "none"
             }
             respostaAtual.style.backgroundColor = "lightgreen";
+            resultado.style.display = "block"
             resultado.innerText = "Parabéns! Você acertou!";
             tentativasRestantes.innerText = "";
             tentativasRes = -1;
@@ -189,13 +209,35 @@
 
 
             if (tentativasRes > 0) {
-                tentativasRestantes.innerText = `Você tem ${tentativasRes} tentativa(s) restantes de 6`;
+                tentativasRestantes.style.display = "block"
+                tentativasRestantes.innerText = `Você tem ${tentativasRes} tentativa(s) restantes de 7`;
+            }
+            if (tentativasRes === 1) {
+                dicaB.style.display = "none"
             }
             if (tentativasRes === 0) {
+                tentativasRestantes.style.display = "block"
+                resultado.style.display = "block"
                 resultado.innerText = `Você errou. A palavra era: ${palavrasIndie[numero].palavra}`;
                 tentativasRestantes.innerText = "Fim de jogo!";
                 tentativasRes = -1;
             }
+        }
+        indice++
+    }
+
+    function dica() {
+        if (tentativasRes < 0) {
+            return
+        }
+        tentativasRes--
+        if (tentativasRes === 1) {
+            dicaB.style.display = "none"
+        }
+        if (tentativasRes > 1) {
+            tentativas.innerHTML += `<p id="tentativa${indice}" style="display: flex; padding: 10px">${palavrasIndie[numero].dica}</p>`
+            tentativasRestantes.style.display = "block"
+            tentativasRestantes.innerText = `Você tem ${tentativasRes} tentativa(s) restantes de 7`;
         }
         indice++
     }

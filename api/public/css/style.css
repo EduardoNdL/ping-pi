@@ -1077,7 +1077,8 @@ button:hover {
     flex-direction: column;
     gap: 0.2rem;
     height: 10rem;
-    width: max-content;
+    width: 17rem;
+    text-align: center;
     overflow-y: scroll;
 }
 
@@ -1130,15 +1131,36 @@ button:hover {
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    overflow: hidden;
 }
 
 .blur-fundo {
+    position: absolute;
+    width: 50%;
+    height: 33.33%;
     backdrop-filter: blur(12px);
-    background-color: rgba(0, 0, 0, 0.2);
-    position: relative;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.resposta-gamedle input{
+    padding: 10px;
+    width: 20rem;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.resposta-gamedle input:focus{
+    border: 2px solid #965f9b;
+    outline: none;
+}
+
+.botoes-gamedle {
+    display: flex;
+    gap: 0.5rem;
+    width: 20rem;
+    justify-content: space-between;
+}
+.botoes-gamedle button{
+    width: 100%;
 }
 
 /* Footer */
