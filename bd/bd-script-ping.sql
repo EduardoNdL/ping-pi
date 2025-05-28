@@ -35,6 +35,27 @@ create table quiz (
     numPergunta int not null
 );
 
+create table perfil (
+    usuario_idusuario int primary key,
+    imagemUrl varchar(255),
+    foreign key (usuario_idusuario) references usuario(idUsuario)
+);
+
+create table conquistas (
+    idconquistas int primary key not null auto_increment,
+    nome varchar(100),
+    descricao text
+);
+
+create table perfil_has_conquistas (
+    perfil_usuario_idusuario int,
+    conquistas_idconquistas int,
+    dataConquista datetime not null default current_timestamp,
+    primary key (perfil_usuario_idusuario, conquistas_idconquistas),
+    foreign key (perfil_usuario_idusuario) references perfil(usuario_idusuario),
+    foreign key (conquistas_idconquistas) references conquistas(idconquistas)
+); 
+
 -- FK's
 alter table usuario add constraint fkJogo foreign key (fkJogo) references jogo(idJogo);
 alter table usuario add constraint fkGenero foreign key (fkGenero) references genero(idGenero);
@@ -85,6 +106,14 @@ insert into genero (nomeGenero) values
 insert into quiz (tema, numPergunta) values 
 	('Hollow Knight', 5),
     ('Outer Wilds', 5);
+    
+insert into conquistas (nome, descricao) values
+('Estreante', 'Realizou o primeiro quiz.'),
+('Explorador', 'Realizou 10 quizzes.'),
+('Viciado em Quiz', 'Realizou 25 quizzes.'),
+('Perfeccionista', 'Acertou todas as perguntas de um quiz.'),
+('Persistente', 'Fez 5 tentativas em um mesmo quiz.'),
+('Colecionador', 'Conquistou todas as conquistas.');
     
 SELECT 
             tentativa, 
@@ -162,3 +191,5 @@ SELECT
         INNER JOIN quiz ON idQuiz = fkQuiz
 		inner join usuario on idUsuario = fkUsuario
         GROUP BY nome order by totalAcertos desc;
+        
+select * from conquistas;

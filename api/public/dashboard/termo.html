@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./../css/style.css" />
+</head>
+
+<body>
+  <div class="dashboard">
+    <div class="header-dash">
+      <div class="logo"><a href="../index.html">MERAKI</a></div>
+      <nav>
+        <ul id="conteudo_header">
+          <li><a href="../index.html#sobre">Sobre</a></li>
+          <li><a href="../index.html#recomenda">Recomende</a></li>
+          <li><a href="dashboard-quiz.html">Quiz</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="ranking.html">Ranking</a></li>
+          <li><a href="#" onclick="limparSessao()">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="principal-dash" style="gap: 2rem;">
+      <h2>IndieTermo</h2>
+      <div style="display: flex; flex-direction: column; gap: 1rem;" class="termo">
+        <div id="palavras"></div>
+        <div id="tentativas"></div>
+      </div>
+      <div id="tentativasRestantes"></div>
+      <div id="resultado"></div>
+      <div class="button_termo">
+        <button onclick="verificar()">validar</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../js/sessao.js"></script>
+<script>
+  // window.onload = validarSessao;
+</script>
+<script>
+  const palavrasIndie = [
+    {
+      palavra: "celeste",
+      dica: "Plataforma sobre escalar uma montanha e lidar com ansiedade."
+    },
+    {
+      palavra: "gris",
+      dica: "Jogo artístico sobre superação do luto, com aquarela animada."
+    },
+    {
+      palavra: "journey",
+      dica: "A jornada silenciosa por um deserto em busca de uma montanha."
+    },
+    {
+      palavra: "limbo",
+      dica: "Aventura preto e branco com atmosfera sombria e puzzles."
+    },
+    {
+      palavra: "undertale",
+      dica: "RPG onde você não precisa lutar e suas escolhas importam."
+    },
+    {
+      palavra: "hollow",
+      dica: "Exploração subterrânea em Hallownest com combates desafiadores."
+    },
+    {
+      palavra: "cuphead",
+      dica: "Run and gun com visual de desenho animado dos anos 30."
+    },
+    {
+      palavra: "tunic",
+      dica: "Aventura com uma raposa em um mundo cheio de segredos e símbolos."
+    },
+    {
+      palavra: "stardew",
+      dica: "Simulador de fazenda com vida social e mistérios em cavernas."
+    },
+    {
+      palavra: "slay",
+      dica: "Roguelike de cartas onde cada jogada conta na sua sobrevivência."
+    },
+    {
+      palavra: "katana",
+      dica: "Ação frenética com estética neon e narrativa sobre trauma."
+    },
+    {
+      palavra: "ori",
+      dica: "Plataforma emocional com uma criatura mágica em uma floresta."
+    },
+    {
+      palavra: "oxenfree",
+      dica: "Narrativa sobrenatural com escolhas em uma ilha assombrada."
+    },
+    {
+      palavra: "inscryption",
+      dica: "Jogo de cartas com elementos de terror e metalinguagem."
+    },
+    {
+      palavra: "spiritfarer",
+      dica: "Gerencie um barco e ajude espíritos a encontrar paz."
+    },
+    {
+      palavra: "inside",
+      dica: "Sucessor espiritual de Limbo com atmosfera tensa e final chocante."
+    },
+    {
+      palavra: "witness",
+      dica: "Mundo aberto de puzzles com filosofia e mistério."
+    },
+    {
+      palavra: "aegis",
+      dica: "JRPG tático com visual encantador e ambientação steampunk."
+    },
+    {
+      palavra: "fez",
+      dica: "Gire o mundo 2D para resolver puzzles em 3D."
+    },
+    {
+      palavra: "braid",
+      dica: "Manipule o tempo para solucionar desafios e repensar narrativas."
+    }
+  ];
+
+  window.onload = criar
+  let numero;
+
+  let tentativasRes = 2
+  function criar() {
+    numero = Math.floor(Math.random() * palavrasIndie.length);
+    console.log(`palavra sorteada: ${palavrasIndie[numero].palavra}`)
+    let palavraIni = document.getElementById("palavras")
+    palavraIni.innerHTML = ""
+    for (let i = 0; i < palavrasIndie[numero].palavra.length; i++) {
+      palavraIni.innerHTML += `<input id="input${i}" type="text" maxlength="1"></input>`
+    }
+  }
+
+  let indice = 0
+  function verificar() {
+    if (tentativasRes == 0) {
+      return
+    }
+    let palavraFormada = ""
+    let tentativas = document.getElementById("tentativas")
+    tentativas.innerHTML += `<div id="tentativa${indice}" style="display: flex; gap: 0.2rem;"></div>`
+    for (let j = 0; j < palavrasIndie[numero].palavra.length; j++) {
+
+      let input = document.getElementById(`input${j}`)
+      let valorDigitado = input.value
+
+      let tentativasAdd = document.getElementById(`tentativa${indice}`)
+      tentativasAdd.innerHTML += `<div class="tentativaAdd" id="blocoTentativa${indice}_${j}"><p>${valorDigitado}</p></div>`
+
+      let tentativasBloco = document.getElementById(`blocoTentativa${indice}_${j}`)
+      if (valorDigitado == palavrasIndie[numero].palavra[j]) {
+        tentativasBloco.style.backgroundColor = "lightgreen";
+      } else {
+        tentativasBloco.style.backgroundColor = "crimson";
+      }
+      palavraFormada += valorDigitado
+    }
+    indice++
+    tentativasRestantes.innerText = `Você tem tentativas ${--tentativasRes} restantes de 10`
+    if (tentativasRes == 0 && palavraFormada != palavrasIndie[numero].palavra) {
+      resultado.innerText = `Você errou. A palavra era: ${palavrasIndie[numero].palavra}`
+    }
+  }
+
+</script>
+
+</html>

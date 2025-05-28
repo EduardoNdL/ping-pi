@@ -78,7 +78,8 @@
                 }
 
                 for (let i = 3; i <= data.length; i++) {
-                    resto.innerHTML = `<p>${i}. ${data[i].nome} - ${data[i].totalAcertos} acertos</p>`
+                    console.log(data[i].nome)
+                    resto.innerHTML += `<p>${i+1}. ${data[i].nome} - ${data[i].totalAcertos} acertos</p>`
                 }
             })
             .catch(err => {

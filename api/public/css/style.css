@@ -69,6 +69,7 @@ body {
     text-decoration: none;
     color: #965F9B;
 }
+
 .header .logo a img {
     width: 25%;
 }
@@ -127,6 +128,7 @@ body {
     text-align: center;
     justify-content: space-between;
 }
+
 .info-indies-img p {
     margin-top: 10px;
     color: rgb(172, 172, 172);
@@ -580,6 +582,7 @@ button {
     margin-top: 10px;
     color: rgb(105, 1, 1);
 }
+
 .validado {
     display: none;
     position: absolute;
@@ -1009,7 +1012,7 @@ button:hover {
 }
 
 /* Ranking */
-.card-vencedores{
+.card-vencedores {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1043,13 +1046,99 @@ button:hover {
     width: 30%;
     text-align: center;
     padding: 10px;
-    max-width: 10rem;
+    max-width: 15rem;
     overflow-y: scroll;
 }
+
 .ranking-resto p {
     background-color: #3c373b;
     padding: 10px;
     border-radius: 15px;
+}
+
+/* Termo */
+#palavras {
+    display: flex;
+    gap: 0.2rem;
+}
+
+#palavras input {
+    width: 50px;
+    height: 50px;
+    background-color: #616161;
+    border: 1px solid #b6b6b6;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+}
+
+#tentativas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    height: 10rem;
+    width: max-content;
+    overflow-y: scroll;
+}
+
+#tentativas::-webkit-scrollbar {
+    width: 10px;
+}
+
+#tentativas::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 10px;
+}
+
+#tentativas::-webkit-scrollbar-thumb {
+    background: #85558a;
+    border-radius: 10px;
+}
+
+#tentativas::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.tentativaAdd {
+    width: 50px;
+    height: 50px;
+    background-color: #616161;
+    border: 1px solid #b6b6b6;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_termo button {
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.300);
+    border: none;
+    margin: 0px 0px !important;
+    border-radius: 40px;
+    color: white;
+    text-align: start;
+    padding: 20px;
+    text-align: center !important;
+}
+
+/* Gamedle */
+#imagem {
+    width: 17rem;
+    height: 25rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.blur-fundo {
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 /* Footer */

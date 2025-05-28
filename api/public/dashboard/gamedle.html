@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../css/style.css" />
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="header-dash">
+            <div class="logo"><a href="../index.html">MERAKI</a></div>
+            <nav>
+                <ul id="conteudo_header">
+                    <li><a href="../index.html#sobre">Sobre</a></li>
+                    <li><a href="../index.html#recomenda">Recomende</a></li>
+                    <li><a href="dashboard-quiz.html">Quiz</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="#" onclick="limparSessao()">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="principal-dash" style="gap: 2rem;">
+            <h2>IndieTermo</h2>
+            <div style="display: flex; flex-direction: column; gap: 1rem;" class="termo">
+                <div id="imagem">
+                    <div id="blur0" class="blur-fundo"></div>
+                    <div id="blur1" class="blur-fundo"></div>
+                    <div id="blur2" class="blur-fundo"></div>
+                    <div id="blur3" class="blur-fundo"></div>
+                    <div id="blur4" class="blur-fundo"></div>
+                    <div id="blur5" class="blur-fundo"></div>
+                </div>
+                <div>
+                    <input type="text" id="resposta">
+                </div>
+                <div id="tentativas"></div>
+            </div>
+            <div id="tentativasRestantes"></div>
+            <div id="resultado"></div>
+            <div class="button_termo">
+                <button onclick="verificar()">validar</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/sessao.js"></script>
+<script>
+    // window.onload = validarSessao;
+</script>
+<script>
+    const palavrasIndie = [
+        {
+            palavra: "celeste",
+            dica: "Plataforma sobre escalar uma montanha e lidar com ansiedade.",
+            imagem: "../assets/gamedle_jogos/celeste.png"
+        }
+        // },
+        // {
+        //   palavra: "gris",
+        //   dica: "Jogo artístico sobre superação do luto, com aquarela animada."
+        // },
+        // {
+        //   palavra: "journey",
+        //   dica: "A jornada silenciosa por um deserto em busca de uma montanha."
+        // },
+        // {
+        //   palavra: "limbo",
+        //   dica: "Aventura preto e branco com atmosfera sombria e puzzles."
+        // },
+        // {
+        //   palavra: "undertale",
+        //   dica: "RPG onde você não precisa lutar e suas escolhas importam."
+        // },
+        // {
+        //   palavra: "hollow knight",
+        //   dica: "Exploração subterrânea em Hallownest com combates desafiadores."
+        // },
+        // {
+        //   palavra: "cuphead",
+        //   dica: "Run and gun com visual de desenho animado dos anos 30."
+        // },
+        // {
+        //   palavra: "tunic",
+        //   dica: "Aventura com uma raposa em um mundo cheio de segredos e símbolos."
+        // },
+        // {
+        //   palavra: "stardew valley",
+        //   dica: "Simulador de fazenda com vida social e mistérios em cavernas."
+        // },
+        // {
+        //   palavra: "slay the spire",
+        //   dica: "Roguelike de cartas onde cada jogada conta na sua sobrevivência."
+        // },
+        // {
+        //   palavra: "katana zero",
+        //   dica: "Ação frenética com estética neon e narrativa sobre trauma."
+        // },
+        // {
+        //   palavra: "ori",
+        //   dica: "Plataforma emocional com uma criatura mágica em uma floresta."
+        // },
+        // {
+        //   palavra: "oxenfree",
+        //   dica: "Narrativa sobrenatural com escolhas em uma ilha assombrada."
+        // },
+        // {
+        //   palavra: "inscryption",
+        //   dica: "Jogo de cartas com elementos de terror e metalinguagem."
+        // },
+        // {
+        //   palavra: "spiritfarer",
+        //   dica: "Gerencie um barco e ajude espíritos a encontrar paz."
+        // },
+        // {
+        //   palavra: "inside",
+        //   dica: "Sucessor espiritual de Limbo com atmosfera tensa e final chocante."
+        // },
+        // {
+        //   palavra: "witness",
+        //   dica: "Mundo aberto de puzzles com filosofia e mistério."
+        // },
+        // {
+        //   palavra: "aegis",
+        //   dica: "JRPG tático com visual encantador e ambientação steampunk."
+        // },
+        // {
+        //   palavra: "fez",
+        //   dica: "Gire o mundo 2D para resolver puzzles em 3D."
+        // },
+        // {
+        //   palavra: "braid",
+        //   dica: "Manipule o tempo para solucionar desafios e repensar narrativas."
+        // }
+    ];
+
+    window.onload = criar
+    let numero;
+
+    function criar() {
+        numero = Math.floor(Math.random() * palavrasIndie.length);
+        console.log(`palavra sorteada: ${palavrasIndie[numero].palavra}`)
+        let imagemIni = document.getElementById("imagem")
+        imagemIni.style.backgroundImage = `url(${palavrasIndie[numero].imagem})`
+        // for (let i = 0; i < palavrasIndie[numero].palavra.length; i++) {
+        //   palavraIni.innerHTML += `<input id="input${i}" type="text" maxlength="1"></input>`
+        // }
+    }
+
+    let indice = 0
+    let historicoBlur = [];
+    let tentativasRes = 7
+    function verificar() {
+        if (tentativasRes < 0) {
+            return
+        }
+        let respostaDigitada = resposta.value
+
+        let tentativas = document.getElementById("tentativas")
+        tentativas.innerHTML += `<p id="tentativa${indice}" style="display: flex; padding: 10px">${respostaDigitada}</p>`
+
+        let respostaAtual = document.getElementById(`tentativa${indice}`)
+
+        if (respostaDigitada == palavrasIndie[numero].palavra) {
+            for (let i = 0; i < 6; i++) {
+                let blur = document.getElementById(`blur${i}`)
+                blur.style.display = "none"
+            }
+            respostaAtual.style.backgroundColor = "lightgreen";
+            resultado.innerText = "Parabéns! Você acertou!";
+            tentativasRestantes.innerText = "";
+            tentativasRes = -1;
+            return
+        } else {
+            tentativasRes--;
+            if (tentativasRes != 0) {
+                let numBlur = Math.floor(Math.random() * 6)
+                while (historicoBlur.includes(numBlur)) {
+                    numBlur = Math.floor(Math.random() * 6)
+                }
+                let blur = document.getElementById(`blur${numBlur}`)
+                blur.style.display = "none"
+                historicoBlur.push(numBlur)
+            }
+            respostaAtual.style.backgroundColor = "crimson";
+
+
+            if (tentativasRes > 0) {
+                tentativasRestantes.innerText = `Você tem ${tentativasRes} tentativa(s) restantes de 6`;
+            }
+            if (tentativasRes === 0) {
+                resultado.innerText = `Você errou. A palavra era: ${palavrasIndie[numero].palavra}`;
+                tentativasRestantes.innerText = "Fim de jogo!";
+                tentativasRes = -1;
+            }
+        }
+        indice++
+    }
+
+</script>
+
+</html>

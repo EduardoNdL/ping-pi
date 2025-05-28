@@ -86,10 +86,10 @@
                     erro.classList.remove("erro")
                     erro.classList.add("validado")
                     erro.style.display = "block"
-                    mensagem_erro.innerHTML = "(Email ou senha inválidos)";
+                    mensagem_erro.innerHTML = "(Login realizado com sucesso)";
                     setTimeout(() => {
                         erro.style.display = "none";
-                    }, 1999);
+                    }, 1500);
 
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";
