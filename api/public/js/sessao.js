@@ -22,6 +22,7 @@ function validarHeader() {
             <li><a href="#visual">Visual</a></li>
             <li><a href="#narrativas">Narrativas</a></li>
             <li><a href="#recomenda">Recomende</a></li>
+            <li><a href="gamedle.html">Adivinhe o jogo</a></li>
             <li><a href="dashboard/dashboard.html"">Dashboard</a></li>
             <li><a href="#" onclick="limparSessao()">Sair</a></li>
         `;
@@ -31,6 +32,7 @@ function validarHeader() {
             <li><a href="#visual">Visual</a></li>
             <li><a href="#narrativas">Narrativas</a></li>
             <li><a href="#recomenda">Recomende</a></li>
+            <li><a href="gamedle.html">Adivinhe o jogo</a></li>
             <li><a href="login.html">Login</a></li>
         `;
     }

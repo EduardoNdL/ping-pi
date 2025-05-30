@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe o jogo</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="header container">
+        <div class="logo"><a href="index.html">MERAKI</a></div>
+        <nav>
+            <ul id="conteudo_header">
+                <li><a href="../index.html#sobre">Sobre</a></li>
+                <li><a href="../index.html#recomenda">Recomende</a></li>
+                <li><a href="dashboard-quiz.html">Quiz</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="ranking.html">Ranking</a></li>
+                <li><a href="#" onclick="limparSessao()">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="principal-dash" style="gap: 0.5rem; min-height: 100vh; padding: 1rem; justify-content: flex-start;">
+        <h2>Adivinhe o jogo</h2>
+        <div style="display: flex; flex-direction: column;" class="termo">
+            <div id="imagem">
+                <div id="blur0" class="blur-fundo" style="top: 0%; left: 0%;"></div>
+                <div id="blur1" class="blur-fundo" style="top: 0%; left: 50%;"></div>
+                <div id="blur2" class="blur-fundo" style="top: 33.333%; left: 0%;"></div>
+                <div id="blur3" class="blur-fundo" style="top: 33.333%; left: 50%;"></div>
+                <div id="blur4" class="blur-fundo" style="top: 66.666%; left: 0%;"></div>
+                <div id="blur5" class="blur-fundo" style="top: 66.666%; left: 50%;"></div>
+            </div>
+        </div>
+        <div class="resposta-gamedle">
+            <input type="text" id="resposta" oninput="existe()" placeholder="Insira o nome do jogo..." autocomplete="off" name="resposta">
+            <div id="sugestoes"></div>
+        </div>
+        <div class="botoes-gamedle">
+            <div class="button_termo" style="width: 60%;" id="dicaB">
+                <button onclick="dica()" style="background-color: darkorange;">Dica</button>
+            </div>
+            <div class="button_termo" style="width: 100%;">
+                <button onclick="verificar()">Validar</button>
+            </div>
+        </div>
+        <div id="tentativaG" style="overflow-y: scroll; display: none;"></div>
+        <div id="tentativasRestantes"> </div>
+        <div id="resultado" style="display: none;"></div>
+    </div>
+</body>
+<script src="../js/sessao.js"></script>
+<script>
+    const palavrasIndie = [
+        {
+            palavra: "celeste",
+            dica: "Plataforma sobre escalar uma montanha e lidar com ansiedade.",
+            imagem: "assets/gamedle_jogos/celeste.png"
+        },
+        {
+            palavra: "gris",
+            dica: "Jogo artístico sobre superação do luto, com aquarela animada.",
+            imagem: "assets/gamedle_jogos/gris.png"
+        },
+        {
+            palavra: "journey",
+            dica: "A jornada silenciosa por um deserto em busca de uma montanha.",
+            imagem: "assets/gamedle_jogos/journey.png"
+        },
+        {
+            palavra: "limbo",
+            dica: "Aventura preto e branco com atmosfera sombria e puzzles.",
+            imagem: "assets/gamedle_jogos/limbo.png"
+        },
+        {
+            palavra: "undertale",
+            dica: "RPG onde você não precisa lutar e suas escolhas importam.",
+            imagem: "assets/gamedle_jogos/undertale.png"
+        },
+        {
+            palavra: "hollow knight",
+            dica: "Exploração subterrânea em Hallownest com combates desafiadores.",
+            imagem: "assets/gamedle_jogos/hollowknight.png"
+        },
+        {
+            palavra: "cuphead",
+            dica: "Run and gun com visual de desenho animado dos anos 30.",
+            imagem: "assets/gamedle_jogos/cuphead.png"
+        },
+        {
+            palavra: "tunic",
+            dica: "Aventura com uma raposa em um mundo cheio de segredos e símbolos.",
+            imagem: "assets/gamedle_jogos/tunic.png"
+        },
+        {
+            palavra: "stardew valley",
+            dica: "Simulador de fazenda com vida social e mistérios em cavernas.",
+            imagem: "assets/gamedle_jogos/stardewvalley.png"
+        },
+        {
+            palavra: "slay the spire",
+            dica: "Roguelike de cartas onde cada jogada conta na sua sobrevivência.",
+            imagem: "assets/gamedle_jogos/slaythespire.png"
+        },
+        {
+            palavra: "katana zero",
+            dica: "Ação frenética com estética neon e narrativa sobre trauma.",
+            imagem: "assets/gamedle_jogos/katanazero.png"
+        },
+        {
+            palavra: "ori",
+            dica: "Plataforma emocional com uma criatura mágica em uma floresta.",
+            imagem: "assets/gamedle_jogos/ori.png"
+        },
+        {
+            palavra: "oxenfree",
+            dica: "Narrativa sobrenatural com escolhas em uma ilha assombrada.",
+            imagem: "assets/gamedle_jogos/oxenfree.png"
+        },
+        {
+            palavra: "inscryption",
+            dica: "Jogo de cartas com elementos de terror e metalinguagem.",
+            imagem: "assets/gamedle_jogos/inscryption.png"
+        },
+        {
+            palavra: "spiritfarer",
+            dica: "Gerencie um barco e ajude espíritos a encontrar paz.",
+            imagem: "assets/gamedle_jogos/spiritfarer.png"
+        },
+        {
+            palavra: "inside",
+            dica: "Sucessor espiritual de Limbo com atmosfera tensa e final chocante.",
+            imagem: "assets/gamedle_jogos/inside.png"
+        },
+        {
+            palavra: "the witness",
+            dica: "Mundo aberto de puzzles com filosofia e mistério.",
+            imagem: "assets/gamedle_jogos/witness.png"
+        },
+        {
+            palavra: "the case of the golden icon",
+            dica: "Aventura investigativa com mistério, arte pixelada e clima noir retrô.",
+            imagem: "assets/gamedle_jogos/thegolden.png"
+        },
+        {
+            palavra: "fez",
+            dica: "Gire o mundo 2D para resolver puzzles em 3D.",
+            imagem: "assets/gamedle_jogos/fez.png"
+        }
+    ];
+
+    window.onload = () => { criar(); validarHeader() }
+    let numero;
+    let tentativasRes = 7
+
+    function criar() {
+        numero = Math.floor(Math.random() * palavrasIndie.length);
+        console.log(`palavra sorteada: ${palavrasIndie[numero].palavra}`)
+        let imagemIni = document.getElementById("imagem")
+        imagemIni.style.backgroundImage = `url(${palavrasIndie[numero].imagem})`
+        for (let i = 0; i < tentativasRes; i++) {
+            tentativasRestantes.innerHTML += `<img src="assets/coracao.svg" alt="" id="coracao${i}">`
+        }
+    }
+
+    function existe() {
+        const jogoCorrespondente = []
+        let respostaDigitada = resposta.value.toLowerCase()
+        sugestoes.innerHTML = "";
+
+        if (respostaDigitada === "" || respostaDigitada.length == 0) {
+            sugestoes.style.display = "none";
+            return;
+        }
+
+
+        for (let i = 0; i < palavrasIndie.length; i++) {
+            if (palavrasIndie[i].palavra.toLowerCase().includes(respostaDigitada)) {
+                jogoCorrespondente.push(palavrasIndie[i].palavra)
+            }
+        }
+
+        console.log(jogoCorrespondente)
+        if (jogoCorrespondente.length != 0) {
+            sugestoes.style.display = "flex"
+        }
+
+        for (let i = 0; i < jogoCorrespondente.length; i++) {
+            sugestoes.innerHTML += `<button onclick=jogoEscolhido("${jogoCorrespondente[i].replace(" ", "-")}")>${jogoCorrespondente[i]}</button>`
+        }
+    }
+
+    function jogoEscolhido(jogo) {
+        jogoOri = jogo.replace("-", " ")
+        resposta.value = jogoOri;
+        sugestoes.innerHTML = ""; 
+        sugestoes.style.display = "none";
+    }
+
+    let indice = 0
+    let historicoBlur = [];
+    function verificar() {
+        if (tentativasRes < 0) {
+            return
+        }
+
+        let respostaDigitada = resposta.value
+
+        if (respostaDigitada == "") {
+            return
+        }
+
+        let tentativas = document.getElementById("tentativaG")
+        tentativas.style.display = "block"
+        tentativas.innerHTML += `<p id="tentativa${indice}" style="display: flex; padding: 10px; border-radius: 10px; justify-content: center;">${respostaDigitada}</p>`
+
+        let respostaAtual = document.getElementById(`tentativa${indice}`)
+
+        if (respostaDigitada == palavrasIndie[numero].palavra) {
+            for (let i = 0; i < 6; i++) {
+                let blur = document.getElementById(`blur${i}`)
+                blur.style.display = "none"
+            }
+            respostaAtual.style.backgroundColor = "lightgreen";
+            resultado.style.display = "block"
+            resultado.innerText = "Parabéns! Você acertou!";
+            tentativasRestantes.style.display = "none";
+            tentativasRes = -1;
+            return
+        } else {
+            tentativasRes--;
+            if (tentativasRes != 0) {
+                let numBlur = Math.floor(Math.random() * 6)
+                while (historicoBlur.includes(numBlur)) {
+                    numBlur = Math.floor(Math.random() * 6)
+                }
+                let blur = document.getElementById(`blur${numBlur}`)
+                blur.style.display = "none"
+                historicoBlur.push(numBlur)
+            }
+            respostaAtual.style.backgroundColor = "crimson";
+
+
+            if (tentativasRes > 0) {
+                coracao = document.getElementById(`coracao${tentativasRes}`)
+                coracao.style.filter = "grayscale(100%)";
+            }
+            if (tentativasRes === 1) {
+                dicaB.style.display = "none"
+            }
+            if (tentativasRes === 0) {
+                resultado.style.display = "block"
+                resultado.innerText = `Fim de jogo!
+                A palavra era: ${palavrasIndie[numero].palavra}`;
+                tentativasRestantes.style.display = "none";
+                tentativasRes = -1;
+            }
+        }
+        indice++
+    }
+
+    function dica() {
+        tentativasRes--
+        if (tentativasRes > 1) {
+            tentativaG.innerHTML += `<p id="tentativa${indice}" style="display: flex; padding: 10px; background-color: darkorange; border-radius: 10px">${palavrasIndie[numero].dica}</p>`
+            coracao = document.getElementById(`coracao${tentativasRes}`)
+            coracao.style.filter = "grayscale(100%)";
+            dicaB.style.display = "none"
+        }
+        indice++
+    }
+
+</script>
+
+</html>

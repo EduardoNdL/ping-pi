@@ -15,10 +15,8 @@
             <div class="logo"><a href="../index.html">MERAKI</a></div>
             <nav>
                 <ul id="conteudo_header">
-                    <li><a href="../index.html#sobre">Sobre</a></li>
-                    <li><a href="../index.html#recomenda">Recomende</a></li>
-                    <li><a href="dashboard-quiz.html">Quiz</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="dashboard-quiz.html">Quiz</a></li>
                     <li><a href="ranking.html">Ranking</a></li>
                     <li><a href="#" onclick="limparSessao()">Sair</a></li>
                 </ul>
@@ -197,7 +195,6 @@
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados dos jogos recebidos: ${JSON.stringify(resposta)}`);
-                        resposta.reverse();
                         plotarGrafico(resposta, `${idCanvas}`);
                     });
                 } else {
@@ -230,29 +227,49 @@
                     'rgb(150, 95, 155)',
                     'rgb(80, 86, 144)',
                     'rgb(159, 153, 208)',
-                    'rgb(159, 193, 215)'
+                    'rgb(159, 193, 215)',
+                    'rgb(122, 122, 122)',
+                    'rgb(200, 100, 100)'
                 ],
                 hoverOffset: 4,
                 borderWidth: 1
             }]
         };
 
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
+        const limite = 4;
+        const dadosFiltrados = resposta.slice(0, limite);
+        const outros = resposta.slice(limite, resposta.length);
+        for (i = 0; i < dadosFiltrados.length; i++) {
+            var registro = dadosFiltrados[i];
             if (registro.porcentagemJogo) {
-                labels.push(registro.nomeJogo)
+                labels.push(registro.nomeJogo);
                 dados.datasets[0].data.push(registro.porcentagemJogo);
-                jogoFavoritoAll = resposta[resposta.length - 1].nomeJogo
+                jogoFavoritoAll = resposta[0].nomeJogo
                 jogoFavoritoAlll.innerHTML = `${jogoFavoritoAll}`;
                 console.log(jogoFavoritoAll)
             } else if (registro.porcentagemGenero) {
                 labels.push(registro.nomeGenero)
                 dados.datasets[0].data.push(registro.porcentagemGenero);
-                genFavoritoAll = resposta[resposta.length - 1].nomeGenero
+                genFavoritoAll = resposta[0].nomeGenero
                 generoFavoritoAll.innerHTML = `${genFavoritoAll}`;
-
             }
         }
+
+        var outrosP = 0
+        for (i = 0; i < outros.length; i++) {
+            var registro = outros[i];
+            if (registro.porcentagemJogo) {
+                outrosP += Number(registro.porcentagemJogo)
+            } else if (registro.porcentagemGenero) {
+                outrosP += Number(registro.porcentagemGenero)
+            }
+        }
+
+        if (outrosP > 0) {
+            labels.push("Outros");
+            dados.datasets[0].data.push(outrosP);
+        }
+
 
         const config = {
             type: 'pie',

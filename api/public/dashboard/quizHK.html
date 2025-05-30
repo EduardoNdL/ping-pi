@@ -14,10 +14,8 @@
             <div class="logo"><a href="../index.html">MERAKI</a></div>
             <nav>
                 <ul id="conteudo_header">
-                    <li><a href="../index.html#sobre">Sobre</a></li>
-                    <li><a href="../index.html#recomenda">Recomende</a></li>
-                    <li><a href="dashboard-quiz.html">Quiz</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="dashboard-quiz.html">Quiz</a></li>
                     <li><a href="ranking.html">Ranking</a></li>
                     <li><a href="#" onclick="limparSessao()">Sair</a></li>
                 </ul>
@@ -33,6 +31,7 @@
                 <p id="resultado"></p>
             </div>
         </div>
+        <div class="barraProgresso" id="barraProgresso"></div>
     </div>
 </body>
 <script src="../js/sessao.js"></script>
@@ -108,6 +107,7 @@
         }
     }
 
+    var tamanhoBarra = 17
     function proxima() {
         salvarResposta()
         if (indice < (perguntas.length - 1)) {
@@ -115,6 +115,8 @@
             construirPergunta()
             atualizarBotoes()
         }
+        tamanhoBarra += 17
+        barraProgresso.style.width = `${tamanhoBarra}%`
     }
     function voltar() {
         salvarResposta()
@@ -123,6 +125,8 @@
             construirPergunta()
             atualizarBotoes()
         }
+        tamanhoBarra -= 17
+        barraProgresso.style.width = `${tamanhoBarra}%`
     }
 
     var tentativaAtual = 1

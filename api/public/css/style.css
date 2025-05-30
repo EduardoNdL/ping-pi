@@ -47,6 +47,18 @@
     }
 }
 
+@keyframes crescer {
+    0% {
+        transform: scale(2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -480,6 +492,80 @@ body {
     pointer-events: none;
 }
 
+.mark-section {
+    margin-top: 5rem;
+    display: flex;
+    background-color: #965f9b;
+    height: 20rem;
+}
+
+.mark-section:hover .imagem-mark,
+.mark-section:hover .p-mark,
+.mark-section:hover div a {
+    transform: scale(1.1);
+}
+
+.mark-section:hover .p-mark {
+    font-weight: bold;
+}
+
+.imagem-container {
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.imagem-mark {
+    background-image: url(../assets/mark.png);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.texto-mark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin: 2rem;
+}
+
+.p-mark {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.texto-mark div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    height: 100%;
+}
+
+.texto-mark div a {
+    width: 10rem;
+    height: 3rem;
+    border-radius: 5px;
+    background-color: lightblue;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: darkblue;
+}
+
+.texto-mark div a:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
 /* Fim home */
 
 /* Login */
@@ -797,6 +883,16 @@ button:hover {
     font-weight: bold;
 }
 
+.barraProgresso {
+    position: absolute;
+    display: flex;
+    left: 15%;
+    width: 17%;
+    bottom: 0;
+    height: 10px;
+    background-color: #965F9B;
+    transition: width 0.5s ease;
+}
 /* Fiz quiz */
 
 /* Header-dashboard */
@@ -1072,31 +1168,30 @@ button:hover {
     color: white;
 }
 
-#tentativas {
+#tentativasG {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-    height: 10rem;
-    width: 17rem;
+    height: 5rem;
     text-align: center;
     overflow-y: scroll;
 }
 
-#tentativas::-webkit-scrollbar {
+#tentativasG::-webkit-scrollbar {
     width: 10px;
 }
 
-#tentativas::-webkit-scrollbar-track {
+#tentativasG::-webkit-scrollbar-track {
     background: #222;
     border-radius: 10px;
 }
 
-#tentativas::-webkit-scrollbar-thumb {
+#tentativasG::-webkit-scrollbar-thumb {
     background: #85558a;
     border-radius: 10px;
 }
 
-#tentativas::-webkit-scrollbar-thumb:hover {
+#tentativasG::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
@@ -1109,6 +1204,23 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#tentativasRestantes {
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    width: fit-content;
+    padding: 10px;
+    text-align: center;
+}
+
+#tentativasRestantes img {
+    width: 32px;
+}
+
+#resultado {
+    text-align: center;
 }
 
 .button_termo button {
@@ -1132,23 +1244,26 @@ button:hover {
     background-repeat: no-repeat;
     position: relative;
     overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid white;
 }
 
 .blur-fundo {
     position: absolute;
     width: 50%;
-    height: 33.33%;
+    height: 33.50%;
     backdrop-filter: blur(12px);
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.resposta-gamedle input{
+.resposta-gamedle input {
     padding: 10px;
     width: 20rem;
     font-size: 16px;
     border-radius: 5px;
 }
-.resposta-gamedle input:focus{
+
+.resposta-gamedle input:focus {
     border: 2px solid #965f9b;
     outline: none;
 }
@@ -1159,8 +1274,43 @@ button:hover {
     width: 20rem;
     justify-content: space-between;
 }
-.botoes-gamedle button{
+
+.botoes-gamedle button {
     width: 100%;
+    background-color: #965f9b;
+}
+
+.botoes-gamedle button:hover {
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.animada {
+    animation: crescer 1s ease-out forwards;
+}
+
+#sugestoes {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    width: 20rem;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+#sugestoes button {
+    color: black;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 0px;
+}
+
+#sugestoes button:hover {
+    background-color: #f0f0f0;
 }
 
 /* Footer */
