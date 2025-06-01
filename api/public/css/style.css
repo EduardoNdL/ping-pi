@@ -595,6 +595,14 @@ body {
     color: white;
 }
 
+#profileUpdateForm {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .login-inputs {
     display: flex;
     flex-direction: column;
@@ -606,7 +614,7 @@ body {
 }
 
 .login-inputs input,
-button {
+.login-inputs button {
     height: 40px;
     background-color: rgba(255, 255, 255, 0.300);
     border: none;
@@ -1234,6 +1242,85 @@ button:hover {
     padding: 20px;
     text-align: center !important;
 }
+
+/* Perfil */
+.perfil-container {
+    display: flex;
+    width: 80%;
+    height: 40vh;
+    background-color: #393939;
+    border-radius: 20px;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.foto-perfil {
+    width: 200px;
+    height: 200px;
+    background-color: #965f9b;
+    border-radius: 100px;
+    background-position: center;
+    background-size: cover;
+}
+
+.out-image-perfil {
+    width: 50%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.textos-perfil {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+}
+.inputs-perfil {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.inputs-perfil div {
+    color: #c7c7c7;
+}
+.inputs-perfil div input {
+    background-color: inherit;
+    border-bottom: 1px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: white;
+    font-size: 16px;
+}
+
+.favoritos-perfil {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+}
+.favoritos-perfil div {
+    color: #c7c7c7;
+}
+#jogoFav, #genFav {
+    color: white;
+    font-weight: bold;
+}
+
+/* Fim perfil */
 
 /* Gamedle */
 #imagem {

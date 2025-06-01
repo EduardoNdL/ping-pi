@@ -1,4 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
+const upload = require('../config/multerConfig');
 // var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
@@ -26,6 +27,7 @@ function autenticar(req, res) {
                             senha: resultadoAutenticar[0].senha,
                             jogoFav: resultadoAutenticar[0].jogoFav,
                             generoFav: resultadoAutenticar[0].generoFav,
+                            fotoPerfil: resultadoAutenticar[0].fotoPerfil
                         });
 
                     } else if (resultadoAutenticar.length == 0) {
@@ -85,7 +87,51 @@ function cadastrar(req, res) {
     }
 }
 
+function atualizar(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    const userId = req.body.userId;
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    const imagemPerfil = req.file ? req.file.filename : null;
+
+    // Faça as validações dos valores
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (userId == undefined) {
+        res.status(400).send("Seu id está undefined!");
+    }
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.atualizar(nome, email, userId, imagemPerfil)
+        .then(
+            function (resultado) {
+                res.status(200).json({ message: "Perfil atualizado com sucesso!", data: resultado,
+                     user: {
+                        imagemPerfil: imagemPerfil,
+                        nomePerfil: nome,
+                        emailPerfil: email
+                     }});
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                if (erro instanceof multer.MulterError) {
+                    return res.status(400).json({ message: erro.message });
+                }
+                console.log(
+                    "\nHouve um erro ao atualizar o usuário! Erro: ",
+                    erro.sqlMessage
+
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    atualizar
 }

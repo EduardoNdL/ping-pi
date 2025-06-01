@@ -81,6 +81,7 @@
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.JOGO_USUARIO = json.jogoFav;
                     sessionStorage.GENERO_USUARIO = json.generoFav;
+                    sessionStorage.FOTO_USUARIO = json.fotoPerfil;
                     sessionStorage.Logou = "Sim"
 
                     erro.classList.remove("erro")
@@ -89,7 +90,7 @@
                     mensagem_erro.innerHTML = "(Login realizado com sucesso)";
                     setTimeout(() => {
                         erro.style.display = "none";
-                    }, 1500);
+                    }, 1900);
 
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";

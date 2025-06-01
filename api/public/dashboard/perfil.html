@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../css/style.css" />
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="header-dash">
+            <div class="logo"><a href="../index.html">MERAKI</a></div>
+            <nav>
+                <ul id="conteudo_header">
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="dashboard-quiz.html">Quiz</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="#" onclick="limparSessao()">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="principal-dash">
+            <div class="perfil-container">
+                <form id="formAtualizar" enctype="multipart/form-data">
+                    <div class="profile">
+                        <div class="foto-perfil" id="avatar_perfil"></div>
+                        <input type="file" id="profileImage" name="avatar">
+                    </div>
+                    <div class="out-image-perfil">
+                        <div class="textos-perfil">
+                            <div class="inputs-perfil">
+                                <div>
+                                    <p>Nome:</p>
+                                    <input type="text" id="nome_ipt" name="nomeServer">
+                                </div>
+                                <div>
+                                    <p>Email:</p>
+                                    <input type="text" id="email_ipt" name="emailServer">
+                                </div>
+                            </div>
+                            <div class="favoritos-perfil">
+                                <div>
+                                    <p>Jogo preferido:</p>
+                                    <p id="jogoFav">XXXX</p>
+                                </div>
+                                <div>
+                                    <p>Genêro preferido:</p>
+                                    <p id="genFav">XXXX</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-perfil">
+                            <button type="submit">Atualizar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/sessao.js"></script>
+<script>
+    window.onload = () => {
+        validarSessao();
+        carregar()
+    }
+
+    function carregar() {
+        const avatarUrl = sessionStorage.FOTO_USUARIO;
+        if (avatarUrl && avatarUrl !== 'null' && avatarUrl !== 'undefined') {
+            avatar_perfil.style.backgroundImage = `URL(../assets/uploads/${avatarUrl})`;
+            console.log(`URL(../assets/uploads/${avatarUrl})`)
+        } else {
+            avatar_perfil.style.backgroundImage = "URL(../assets/icones/default.png)";
+        }
+
+        nome_ipt.value = sessionStorage.NOME_USUARIO || '';
+        email_ipt.value = sessionStorage.EMAIL_USUARIO || '';
+        jogoFav.innerText = sessionStorage.JOGO_USUARIO || 'Não definido';
+        genFav.innerText = sessionStorage.GENERO_USUARIO || 'Não definido';
+    };
+
+    formAtualizar.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(formAtualizar);
+
+        const userId = sessionStorage.ID_USUARIO;
+        if (userId) {
+            formData.append('userId', userId);
+        } else {
+            alert('ID do usuário não encontrado na sessão. Faça login novamente.');
+            return;
+        }
+
+        try {
+            const response = await fetch("/usuarios/atualizar", {
+                method: "POST",
+                body: formData
+            });
+
+            const resultado = await response.json();
+
+            if (response.ok) {
+                alert('Perfil atualizado com sucesso!');
+                console.log('Resposta do servidor:', resultado);
+
+                sessionStorage.FOTO_USUARIO = resultado.user.imagemPerfil;
+                sessionStorage.NOME_USUARIO = resultado.user.nomePerfil;
+                sessionStorage.EMAIL_USUARIO = resultado.user.emailPerfil;
+
+                carregar()
+            } else {
+                console.error('Erro na resposta do servidor:', data);
+            }
+        } catch (error) {
+            console.error('Erro na requisição de atualização:', error);
+        }
+    });
+</script>
+
+</html>

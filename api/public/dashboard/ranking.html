@@ -14,6 +14,7 @@
             <div class="logo"><a href="../index.html">MERAKI</a></div>
             <nav>
                 <ul id="conteudo_header">
+                    <li><a href="perfil.html">Perfil</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
                     <li><a href="dashboard-quiz.html">Quiz</a></li>
                     <li><a href="ranking.html">Ranking</a></li>
@@ -40,7 +41,7 @@
                     <div class="circle">
                         <p id="circle3"></p>
                     </div>
-                    <p id="terceiro" >Terceiro Lugar</p>
+                    <p id="terceiro">Terceiro Lugar</p>
                 </div>
             </div>
             <div class="ranking-resto" id="resto">
@@ -77,7 +78,7 @@
 
                 for (let i = 3; i <= data.length; i++) {
                     console.log(data[i].nome)
-                    resto.innerHTML += `<p>${i+1}. ${data[i].nome} - ${data[i].totalAcertos} acertos</p>`
+                    resto.innerHTML += `<p>${i + 1}. ${data[i].nome} - ${data[i].totalAcertos} acertos</p>`
                 }
             })
             .catch(err => {

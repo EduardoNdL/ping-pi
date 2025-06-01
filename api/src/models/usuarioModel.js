@@ -4,7 +4,7 @@ function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucaoSql = `
         SELECT idUsuario, nome, email, fkJogo as jogo_favorito, fkGenero as genero_favorito,
-        nomeJogo as jogoFav, nomeGenero as generoFav
+        nomeJogo as jogoFav, nomeGenero as generoFav, fotoPerfil
         FROM usuario
         inner join jogo on fkJogo = idJogo
         inner join genero on fkGenero = idGenero
@@ -24,7 +24,19 @@ function cadastrar(nome, email, senha, fkJogo, fkGenero) {
     return database.executar(instrucaoSql);
 }
 
+function atualizar(nome, email, userId, imagemPerfil) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", nome, email, userId, imagemPerfil)
+    var instrucaoSql = `
+        UPDATE usuario
+        SET nome = '${nome}', email = '${email}', fotoPerfil = '${imagemPerfil}'
+        WHERE idUsuario = '${userId}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    atualizar
 };

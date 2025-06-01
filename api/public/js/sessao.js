@@ -3,10 +3,9 @@ function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
     var b_usuario = document.getElementById("b_usuario");
+    var logou = sessionStorage.Logou;
 
-    if (email != null && nome != null && logou != null && sessionStorage.Logou == "Sim") {
-        b_usuario.innerHTML = nome;
-    } else {
+    if (email == null && nome == null && logou == null && sessionStorage.Logou != "Sim") {
         window.location = "../login.html";
     }
 }
@@ -14,7 +13,7 @@ function validarSessao() {
 function validarHeader() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
-    var logou = sessionStorage.Logou; // corrigido
+    var logou = sessionStorage.Logou;
 
     if (email != null && nome != null && logou === "Sim") {
         conteudo_header.innerHTML = `

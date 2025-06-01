@@ -157,7 +157,6 @@
 
     function criar() {
         numero = Math.floor(Math.random() * palavrasIndie.length);
-        console.log(`palavra sorteada: ${palavrasIndie[numero].palavra}`)
         let imagemIni = document.getElementById("imagem")
         imagemIni.style.backgroundImage = `url(${palavrasIndie[numero].imagem})`
         for (let i = 0; i < tentativasRes; i++) {
@@ -182,7 +181,6 @@
             }
         }
 
-        console.log(jogoCorrespondente)
         if (jogoCorrespondente.length != 0) {
             sugestoes.style.display = "flex"
         }
