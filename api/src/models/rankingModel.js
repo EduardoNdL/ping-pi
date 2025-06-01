@@ -5,11 +5,12 @@ function obter() {
     var instrucaoSql = `
         SELECT 
             nome,
+            fotoPerfil,
             SUM(pontuacao) AS totalAcertos
         FROM pontuacao
         INNER JOIN quiz ON idQuiz = fkQuiz
 		INNER JOIN usuario on idUsuario = fkUsuario
-        GROUP BY nome
+        GROUP BY nome, fotoPerfil
         ORDER BY totalAcertos DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

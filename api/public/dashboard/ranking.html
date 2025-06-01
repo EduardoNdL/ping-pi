@@ -26,20 +26,20 @@
             <h2>Ranking</h2>
             <div style="display: flex; gap: 1rem;">
                 <div class="card-vencedores" style="margin-top: 1rem; background-color: silver;">
-                    <div class="circle">
-                        <p id="circle2"></p>
+                    <div class="circle" id="circle2">
+                        <p></p>
                     </div>
                     <p id="segundo" style="color: #ffffff">Segundo Lugar</p>
                 </div>
                 <div class="card-vencedores" style="background-color: goldenrod;">
-                    <div class="circle">
-                        <p id="circle1"></p>
+                    <div class="circle" id="circle1">
+                        <p></p>
                     </div>
                     <p id="primeiro">Primeiro Lugar</p>
                 </div>
                 <div class="card-vencedores" style="margin-top: 2rem; background-color: brown;">
-                    <div class="circle">
-                        <p id="circle3"></p>
+                    <div class="circle" id="circle3">
+                        <p></p>
                     </div>
                     <p id="terceiro">Terceiro Lugar</p>
                 </div>
@@ -66,13 +66,25 @@
             .then(data => {
                 console.log(data)
                 if (data[0] != undefined) {
-                    circle1.innerText = data[0].nome.charAt(0).toUpperCase();
+                    if (data[0].fotoPerfil != null) {
+                        circle1.style.backgroundImage = `URL(../assets/uploads/${data[0].fotoPerfil})`;
+                    } else {
+                        circle1.style.backgroundImage = `URL(../assets/icones/default.png)`;
+                    }
                     primeiro.innerText = `${data[0].nome} - ${data[0].totalAcertos} acertos`
                 } if (data[1] != undefined) {
-                    circle2.innerText = data[1].nome.charAt(0).toUpperCase();
+                    if (data[1].fotoPerfil != null) {
+                        circle2.style.backgroundImage = `URL(../assets/uploads/${data[1].fotoPerfil})`;
+                    } else {
+                        circle2.style.backgroundImage = `URL(../assets/icones/default.png)`;
+                    }
                     segundo.innerText = `${data[1].nome} - ${data[1].totalAcertos} acertos`
                 } if (data[2] != undefined) {
-                    circle3.innerText = data[2].nome.charAt(0).toUpperCase();
+                    if (data[2].fotoPerfil != null) {
+                        circle3.style.backgroundImage = `URL(../assets/uploads/${data[2].fotoPerfil})`;
+                    } else {
+                        circle3.style.backgroundImage = `URL(../assets/icones/default.png)`;
+                    }
                     terceiro.innerText = `${data[2].nome} - ${data[2].totalAcertos} acertos`
                 }
 

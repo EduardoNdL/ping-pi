@@ -6,6 +6,7 @@ create table usuario (
     nome varchar(100) not null,
     email varchar(255) not null,
     senha varchar(255) not null,
+    fotoPerfil varchar(200),
     fkJogo int not null,
     fkGenero int not null
 );
@@ -193,3 +194,5 @@ SELECT
         GROUP BY nome order by totalAcertos desc;
         
 select * from conquistas;
+
+alter table usuario add fotoPerfil varchar(200);
