@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <div class="splash" id="splash">
+        <h1 id="splashH">MERAKI</h1>
+    </div>
     <div class="header container">
         <div class="logo"><a href="index.html">MERAKI</a></div>
         <nav>
@@ -365,9 +368,22 @@
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>`
-
-
     }
+
+    function splash() {
+        const fundo = document.getElementById("splash")
+        const fundoT = document.getElementById("splashH")
+
+        setTimeout(() => {
+            fundo.style.opacity = '0'
+        },200);
+
+        setTimeout(() => {
+            fundo.style.display = 'none';
+            fundoT.style.display = 'block';
+        },2000);
+    }
+    window.addEventListener("load", splash)
 
 
 </script>

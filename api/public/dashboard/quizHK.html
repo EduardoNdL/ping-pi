@@ -23,7 +23,7 @@
             </nav>
         </div>
         <div id="quiz" class="quiz">
-            <div class="quiz-container" id="resultado">
+            <div class="quiz-container" id="quiz-container">
                 <h2>Quiz: Você realmente jogou Hollow Knight?</h2>
                 <div id="quiz_container">
                 </div>
@@ -178,14 +178,15 @@
             }
         }
 
-        document.getElementById("resultado").innerHTML = `
-        <div style="display: flex;
+        document.getElementById("quiz-container").innerHTML = ""
+        document.getElementById("quiz-container").innerHTML = `
+        <div class="voltarQuiz" style="display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 text-align: center">
             <p>Você acertou ${acertosVar} de ${perguntas.length} perguntas.</p> <br>
-            <a href="dashboard.html"><button style="padding-right: 30px">Voltar para a dashboard</button></a>
+            <a href="dashboard.html"><button>Voltar para a dashboard</button></a>
         </div>`;
         console.log(respostasMarcadas)
         fetch("/quiz/cadastrarQuiz", {

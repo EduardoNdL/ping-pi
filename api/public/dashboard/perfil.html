@@ -26,8 +26,19 @@
             <div class="perfil-container">
                 <form id="formAtualizar" enctype="multipart/form-data">
                     <div class="profile">
-                        <div class="foto-perfil" id="avatar_perfil"></div>
-                        <input type="file" id="profileImage" name="avatar">
+                        <div class="foto-perfil" id="avatar_perfil">
+                            <div>
+                                <div class="overlay1" style="border-radius: 100%;"></div>
+                                <div class="edit-perfil" id="editPerfil">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <rect width="24" height="24" fill="none" />
+                                        <path fill="#fff"
+                                            d="M5 19h1.425L16.2 9.225L14.775 7.8L5 17.575zm-2 2v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM19 6.4L17.6 5zm-3.525 2.125l-.7-.725L16.2 9.225z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" id="profileImage" name="avatar" style="display: none;">
                     </div>
                     <div class="out-image-perfil">
                         <div class="textos-perfil">
@@ -83,7 +94,16 @@
         genFav.innerText = sessionStorage.GENERO_USUARIO || 'Não definido';
     };
 
-    formAtualizar.addEventListener('submit', async (event) => {
+    const iptIMG = document.getElementById("profileImage");
+    const buttonClique = document.getElementById("editPerfil")
+
+    function addImagem() {
+        iptIMG.click()
+    }
+
+    buttonClique.addEventListener('click', addImagem)
+
+    formAtualizar.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const formData = new FormData(formAtualizar);
@@ -91,34 +111,38 @@
         const userId = sessionStorage.ID_USUARIO;
         if (userId) {
             formData.append('userId', userId);
-        } else {
-            alert('ID do usuário não encontrado na sessão. Faça login novamente.');
-            return;
         }
 
-        try {
-            const response = await fetch("/usuarios/atualizar", {
-                method: "POST",
-                body: formData
-            });
+        const fotoUser = sessionStorage.FOTO_USUARIO
+        if (fotoUser) {
+            formData.append('fotoUser', fotoUser)
+        }
 
-            const resultado = await response.json();
 
-            if (response.ok) {
-                alert('Perfil atualizado com sucesso!');
-                console.log('Resposta do servidor:', resultado);
+        fetch("/usuarios/atualizar", {
+            method: "POST",
+            body: formData
+        })
 
-                sessionStorage.FOTO_USUARIO = resultado.user.imagemPerfil;
-                sessionStorage.NOME_USUARIO = resultado.user.nomePerfil;
-                sessionStorage.EMAIL_USUARIO = resultado.user.emailPerfil;
+            .then(response => {
+                return response.json()
+                    .then(resultado => {
 
-                carregar()
-            } else {
-                console.error('Erro na resposta do servidor:', data);
-            }
-        } catch (error) {
+                        if (response.ok) {
+                            sessionStorage.FOTO_USUARIO = resultado.user.imagemPerfil;
+                            sessionStorage.NOME_USUARIO = resultado.user.nomePerfil;
+                            sessionStorage.EMAIL_USUARIO = resultado.user.emailPerfil;
+
+                            carregar()
+                        } else {
+                            console.error('Erro na resposta do servidor:', data);
+                        }
+                    });
+            })
+
+            .catch(error => {
             console.error('Erro na requisição de atualização:', error);
-        }
+        });
     });
 </script>
 

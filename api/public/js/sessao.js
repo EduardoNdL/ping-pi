@@ -14,6 +14,8 @@ function validarHeader() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
     var logou = sessionStorage.Logou;
+    var img = sessionStorage.FOTO_USUARIO
+    console.log(img)
 
     if (email != null && nome != null && logou === "Sim") {
         conteudo_header.innerHTML = `
@@ -23,7 +25,13 @@ function validarHeader() {
             <li><a href="#recomenda">Recomende</a></li>
             <li><a href="gamedle.html">Adivinhe o jogo</a></li>
             <li><a href="dashboard/dashboard.html"">Dashboard</a></li>
-            <li><a href="#" onclick="limparSessao()">Sair</a></li>
+            <div id="imgHeader" onclick="hamburguers()">
+                <li><img src="assets/uploads/${img}"></img></li>
+            </div>
+            <div id="hamburguer">
+                <li><a href="dashboard/perfil.html"">Ver perfil</a></li>
+                <li id="sair"><a href="#" onclick="limparSessao()">Sair</a></li>
+            </div>
         `;
     } else {
         conteudo_header.innerHTML = `
@@ -34,6 +42,19 @@ function validarHeader() {
             <li><a href="gamedle.html">Adivinhe o jogo</a></li>
             <li><a href="login.html">Login</a></li>
         `;
+    }
+}
+
+var ativado = false
+function hamburguers() {
+    if (ativado == false) {
+        hamburguer.style.display = "flex";
+        imgHeader.classList.add("ativo")
+        ativado = true;
+    } else {
+        hamburguer.style.display = "none";
+        imgHeader.classList.remove("ativo")
+        ativado = false
     }
 }
 

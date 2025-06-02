@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,12 +185,13 @@
         }
 
         for (let i = 0; i < jogoCorrespondente.length; i++) {
-            sugestoes.innerHTML += `<button onclick=jogoEscolhido("${jogoCorrespondente[i].replace(" ", "-")}")>${jogoCorrespondente[i]}</button>`
+            sugestoes.innerHTML += `<button onclick=jogoEscolhido("${jogoCorrespondente[i].replaceAll(" ", "-")}")>${jogoCorrespondente[i]}</button>`
         }
     }
 
     function jogoEscolhido(jogo) {
         jogoOri = jogo.replace("-", " ")
+        console.log(jogoOri)
         resposta.value = jogoOri;
         sugestoes.innerHTML = ""; 
         sugestoes.style.display = "none";

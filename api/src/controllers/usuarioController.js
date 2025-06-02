@@ -88,11 +88,11 @@ function cadastrar(req, res) {
 }
 
 function atualizar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     const userId = req.body.userId;
+    const fotoUser = req.body.fotoUser;
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
-    const imagemPerfil = req.file ? req.file.filename : null;
+    const imagemPerfil = req.file ? req.file.filename : fotoUser;
 
     // Faça as validações dos valores
     if (nome == undefined) {
