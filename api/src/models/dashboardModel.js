@@ -4,8 +4,6 @@ function buscarInfoDash(fkUsuario) {
 
     var instrucaoSql = `SELECT 
             tentativa, 
-            tema, 
-            pontuacao, 
             dataHora,
             (SELECT SUM(pontuacao) FROM pontuacao WHERE fkUsuario = ${fkUsuario}) AS totalAcertos,
             (SELECT SUM(numPergunta) FROM pontuacao p inner join quiz on idQuiz = fkQuiz and fkUsuario = ${fkUsuario}) AS totalPerguntas,

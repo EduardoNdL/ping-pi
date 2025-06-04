@@ -163,10 +163,11 @@
                     tentNum.innerHTML = `${primeiraTentativa.totalTentativas}`
                     acerNum.innerHTML = `${primeiraTentativa.totalAcertos}`
 
-                    data.forEach((tentativa, index) => {
-                        tentativas.innerHTML += `<div id="">Tentativa ${index + 1} -
-                             ${tentativa.pontuacao}/${tentativa.numPergunta}</div>`;
-                    })
+                    for(let i = 0; i < data.length; i++) {
+                        tentativas.innerHTML += `<div id="">Tentativa ${i + 1} -
+                             ${data[i].pontuacao}/${data[i].numPergunta}</div>`;
+                    }
+                    
                 } else {
                     tentNum.innerHTML = `Nenhum dado encontrado`
                     acerNum.innerHTML = `Nenhum dado encontrado`
@@ -178,7 +179,6 @@
             });
     }
 
-    let proximaAtualizacao;
     let jogoFavoritoAll = ""
     let genFavoritoAll = ""
 
@@ -186,10 +186,6 @@
     let grafico2 = null
 
     function obterDadosGrafico(buscar, idCanvas) {
-
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
 
         fetch(`/dashboard/buscarGrafico${buscar}`, { cache: 'no-store' })
             .then(function (response) {
@@ -238,16 +234,20 @@
         };
 
         const limite = 4;
-        const dadosFiltrados = resposta.slice(0, limite);
-        const outros = resposta.slice(limite, resposta.length);
+        const dadosFiltrados = resposta.slice(0, limite)
+        const outros = resposta.slice(limite, resposta.length)
+
         for (i = 0; i < dadosFiltrados.length; i++) {
-            var registro = dadosFiltrados[i];
+
+            var registro = dadosFiltrados[i]
+
             if (registro.porcentagemJogo) {
-                labels.push(registro.nomeJogo);
+                labels.push(registro.nomeJogo)
                 dados.datasets[0].data.push(registro.porcentagemJogo);
                 jogoFavoritoAll = resposta[0].nomeJogo
                 jogoFavoritoAlll.innerHTML = `${jogoFavoritoAll}`;
                 console.log(jogoFavoritoAll)
+                
             } else if (registro.porcentagemGenero) {
                 labels.push(registro.nomeGenero)
                 dados.datasets[0].data.push(registro.porcentagemGenero);

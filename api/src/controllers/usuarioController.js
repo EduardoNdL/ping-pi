@@ -1,6 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-const upload = require('../config/multerConfig');
-// var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -48,14 +46,12 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var fkJogo = req.body.jogoFavServer;
     var fkGenero = req.body.genFavServer;
 
-    // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
@@ -68,7 +64,6 @@ function cadastrar(req, res) {
         res.status(400).send("Seu genero favorito está undefined!");
     } else {
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha, fkJogo, fkGenero)
             .then(
                 function (resultado) {
@@ -94,7 +89,6 @@ function atualizar(req, res) {
     var email = req.body.emailServer;
     const imagemPerfil = req.file ? req.file.filename : fotoUser;
 
-    // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
@@ -103,7 +97,6 @@ function atualizar(req, res) {
         res.status(400).send("Seu id está undefined!");
     }
 
-    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel.atualizar(nome, email, userId, imagemPerfil)
         .then(
             function (resultado) {

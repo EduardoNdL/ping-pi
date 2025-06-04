@@ -83,15 +83,14 @@
         const avatarUrl = sessionStorage.FOTO_USUARIO;
         if (avatarUrl && avatarUrl !== 'null' && avatarUrl !== 'undefined') {
             avatar_perfil.style.backgroundImage = `URL(../assets/uploads/${avatarUrl})`;
-            console.log(`URL(../assets/uploads/${avatarUrl})`)
         } else {
             avatar_perfil.style.backgroundImage = "URL(../assets/icones/default.png)";
         }
 
-        nome_ipt.value = sessionStorage.NOME_USUARIO || '';
-        email_ipt.value = sessionStorage.EMAIL_USUARIO || '';
-        jogoFav.innerText = sessionStorage.JOGO_USUARIO || 'Não definido';
-        genFav.innerText = sessionStorage.GENERO_USUARIO || 'Não definido';
+        nome_ipt.value = sessionStorage.NOME_USUARIO
+        email_ipt.value = sessionStorage.EMAIL_USUARIO
+        jogoFav.innerText = sessionStorage.JOGO_USUARIO
+        genFav.innerText = sessionStorage.GENERO_USUARIO
     };
 
     const iptIMG = document.getElementById("profileImage");
@@ -103,7 +102,7 @@
 
     buttonClique.addEventListener('click', addImagem)
 
-    formAtualizar.addEventListener('submit', async function (event) {
+    formAtualizar.addEventListener('submit', function (event) {
         event.preventDefault();
 
         const formData = new FormData(formAtualizar);

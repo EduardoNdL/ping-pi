@@ -204,14 +204,12 @@
                     cardErro.style.display = "block";
 
                     mensagem_erro.innerHTML = "Pontuação salva com sucesso...";
-                    // finalizarAguardar();
                 } else {
                     throw "Houve um erro ao tentar realizar o salvamento!";
                 }
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                // finalizarAguardar();
             });
 
         return false;
