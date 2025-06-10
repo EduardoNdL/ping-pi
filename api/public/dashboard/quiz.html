@@ -23,7 +23,7 @@
             </nav>
         </div>
         <div id="quiz" class="quiz">
-            <div class="quiz-container">
+            <div class="quiz-container" id="quiz-container">
                 <h2>Quiz: Você realmente jogou Outer Wilds?</h2>
                 <div id="quiz_container">
 
@@ -158,13 +158,6 @@
         salvarResposta()
         var fkusuarioVar = Number(sessionStorage.ID_USUARIO);
         var acertosVar = 0
-
-        const selecionada = document.querySelector(`input[name="q${indice}"]:checked`);
-        if (selecionada) {
-            const valor = Number(selecionada.value);
-            respostasMarcadas[indice] = valor;
-        }
-
 
         for (let i = 0; i < perguntas.length; i++) {
             if (respostasMarcadas[i] === respostasCorretas[i]) {

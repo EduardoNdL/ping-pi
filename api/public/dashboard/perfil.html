@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="file" id="profileImage" name="avatar" style="display: none;">
+                        <input type="file" id="imagemPerfil" name="avatar" style="display: none;">
                     </div>
                     <div class="out-image-perfil">
                         <div class="textos-perfil">
@@ -80,9 +80,9 @@
     }
 
     function carregar() {
-        const avatarUrl = sessionStorage.FOTO_USUARIO;
-        if (avatarUrl && avatarUrl !== 'null' && avatarUrl !== 'undefined') {
-            avatar_perfil.style.backgroundImage = `URL(../assets/uploads/${avatarUrl})`;
+        const fotoUsuario = sessionStorage.FOTO_USUARIO;
+        if (fotoUsuario && fotoUsuario !== 'null' && fotoUsuario !== 'undefined') {
+            avatar_perfil.style.backgroundImage = `URL(../assets/uploads/${fotoUsuario})`;
         } else {
             avatar_perfil.style.backgroundImage = "URL(../assets/icones/default.png)";
         }
@@ -93,7 +93,7 @@
         genFav.innerText = sessionStorage.GENERO_USUARIO
     };
 
-    const iptIMG = document.getElementById("profileImage");
+    const iptIMG = document.getElementById("imagemPerfil");
     const buttonClique = document.getElementById("editPerfil")
 
     function addImagem() {
@@ -107,14 +107,14 @@
 
         const formData = new FormData(formAtualizar);
 
-        const userId = sessionStorage.ID_USUARIO;
-        if (userId) {
-            formData.append('userId', userId);
+        const usuarioId = sessionStorage.ID_USUARIO;
+        if (usuarioId) {
+            formData.append('userId', usuarioId);
         }
 
-        const fotoUser = sessionStorage.FOTO_USUARIO
-        if (fotoUser) {
-            formData.append('fotoUser', fotoUser)
+        const fotoUsuario = sessionStorage.FOTO_USUARIO
+        if (fotoUsuario) {
+            formData.append('fotoUsuario', fotoUsuario)
         }
 
 
@@ -128,9 +128,9 @@
                     .then(resultado => {
 
                         if (response.ok) {
-                            sessionStorage.FOTO_USUARIO = resultado.user.imagemPerfil;
-                            sessionStorage.NOME_USUARIO = resultado.user.nomePerfil;
-                            sessionStorage.EMAIL_USUARIO = resultado.user.emailPerfil;
+                            sessionStorage.FOTO_USUARIO = resultado.usuario.imagemPerfil;
+                            sessionStorage.NOME_USUARIO = resultado.usuario.nomePerfil;
+                            sessionStorage.EMAIL_USUARIO = resultado.usuario.emailPerfil;
 
                             carregar()
                         } else {

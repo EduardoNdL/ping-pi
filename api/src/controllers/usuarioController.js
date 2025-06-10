@@ -84,7 +84,7 @@ function cadastrar(req, res) {
 
 function atualizar(req, res) {
     const userId = req.body.userId;
-    const fotoUser = req.body.fotoUser;
+    const fotoUser = req.body.fotoUsuario;
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     const imagemPerfil = req.file ? req.file.filename : fotoUser;
@@ -101,7 +101,7 @@ function atualizar(req, res) {
         .then(
             function (resultado) {
                 res.status(200).json({ message: "Perfil atualizado com sucesso!", data: resultado,
-                     user: {
+                     usuario: {
                         imagemPerfil: imagemPerfil,
                         nomePerfil: nome,
                         emailPerfil: email
