@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +35,8 @@
             </div>
         </div>
         <div class="resposta-gamedle">
-            <input type="text" id="resposta" oninput="existe()" placeholder="Insira o nome do jogo..." autocomplete="off" name="resposta">
+            <input type="text" id="resposta" oninput="existe()" placeholder="Insira o nome do jogo..."
+                autocomplete="off" name="resposta">
             <div id="sugestoes"></div>
         </div>
         <div class="botoes-gamedle">
@@ -190,10 +192,10 @@
     }
 
     function jogoEscolhido(jogo) {
-        jogoOri = jogo.replace("-", " ")
+        jogoOri = jogo.replaceAll("-", " ")
         console.log(jogoOri)
         resposta.value = jogoOri;
-        sugestoes.innerHTML = ""; 
+        sugestoes.innerHTML = "";
         sugestoes.style.display = "none";
     }
 
@@ -262,7 +264,9 @@
     function dica() {
         tentativasRes--
         if (tentativasRes > 1) {
-            tentativaG.innerHTML += `<p id="tentativa${indice}" style="display: flex; padding: 10px; background-color: darkorange; border-radius: 10px">${palavrasIndie[numero].dica}</p>`
+            let tentativas = document.getElementById("tentativaG")
+            tentativas.style.display = "block"
+            tentativas.innerHTML += `<p id="tentativa${indice}" style="display: flex; padding: 10px; background-color: darkorange; border-radius: 10px">${palavrasIndie[numero].dica}</p>`
             coracao = document.getElementById(`coracao${tentativasRes}`)
             coracao.style.filter = "grayscale(100%)";
             dicaB.style.display = "none"
