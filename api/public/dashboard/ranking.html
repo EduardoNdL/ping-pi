@@ -66,21 +66,21 @@
             .then(data => {
                 console.log(data)
                 if (data[0] != undefined) {
-                    if (data[0].fotoPerfil != null) {
+                    if (data[0].fotoPerfil != null || data[0].fotoPerfil != undefined) {
                         circle1.style.backgroundImage = `URL(../assets/uploads/${data[0].fotoPerfil})`;
                     } else {
                         circle1.style.backgroundImage = `URL(../assets/icones/default.png)`;
                     }
                     primeiro.innerText = `${data[0].nome} - ${data[0].totalAcertos} acertos`
                 } if (data[1] != undefined) {
-                    if (data[1].fotoPerfil != null) {
+                    if (data[0].fotoPerfil != null || data[0].fotoPerfil != undefined) {
                         circle2.style.backgroundImage = `URL(../assets/uploads/${data[1].fotoPerfil})`;
                     } else {
                         circle2.style.backgroundImage = `URL(../assets/icones/default.png)`;
                     }
                     segundo.innerText = `${data[1].nome} - ${data[1].totalAcertos} acertos`
                 } if (data[2] != undefined) {
-                    if (data[2].fotoPerfil != null) {
+                    if (data[0].fotoPerfil != null || data[0].fotoPerfil != undefined) {
                         circle3.style.backgroundImage = `URL(../assets/uploads/${data[2].fotoPerfil})`;
                     } else {
                         circle3.style.backgroundImage = `URL(../assets/icones/default.png)`;
