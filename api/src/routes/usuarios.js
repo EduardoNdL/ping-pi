@@ -12,7 +12,7 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-router.post("/atualizar", upload.single('avatar'), function (req, res) {
+router.post("/atualizar", upload.single('imagemPerfil'), function (req, res) {
     usuarioController.atualizar(req, res);
 });
 

@@ -24,7 +24,7 @@
         </div>
         <div class="principal-dash">
             <div class="perfil-container">
-                <form id="formAtualizar" enctype="multipart/form-data">
+                <div id="formAtualizar">
                     <div class="profile">
                         <div class="foto-perfil" id="avatar_perfil">
                             <div>
@@ -38,18 +38,18 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="file" id="imagemPerfil" name="avatar" style="display: none;">
+                        <input type="file" id="imagemPerfil" style="display: none;">
                     </div>
                     <div class="out-image-perfil">
                         <div class="textos-perfil">
                             <div class="inputs-perfil">
                                 <div>
                                     <p>Nome:</p>
-                                    <input type="text" id="nome_ipt" name="nomeServer">
+                                    <input type="text" id="nome_ipt">
                                 </div>
                                 <div>
                                     <p>Email:</p>
-                                    <input type="text" id="email_ipt" name="emailServer">
+                                    <input type="text" id="email_ipt">
                                 </div>
                             </div>
                             <div class="favoritos-perfil">
@@ -64,10 +64,10 @@
                             </div>
                         </div>
                         <div class="button-perfil">
-                            <button type="submit">Atualizar</button>
+                            <button id="button_perfil">Atualizar</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -102,10 +102,11 @@
 
     buttonClique.addEventListener('click', addImagem)
 
-    formAtualizar.addEventListener('submit', function (event) {
+    const botaoP = document.getElementById("button_perfil")
+    botaoP.addEventListener('click', function (event) {
         event.preventDefault();
 
-        const formData = new FormData(formAtualizar);
+        const formData = new FormData();
 
         const usuarioId = sessionStorage.ID_USUARIO;
         if (usuarioId) {
@@ -116,6 +117,10 @@
         if (fotoUsuario) {
             formData.append('fotoUsuario', fotoUsuario)
         }
+
+        formData.append('nomeServer', nome_ipt.value)
+        formData.append('emailServer', email_ipt.value)
+        formData.append('imagemPerfil', iptIMG.files[0])
 
 
         fetch("/usuarios/atualizar", {
